@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#1DC5C5</color>
+    <color name="colorPrimaryDark">#2DA294</color>
+    <color name="colorAccent">#163F5B</color>
+    <color name="colorLightGrey">#F2F2F2</color>
+    <color name="colorDarkGrey">#4A4A4A</color>
+    <color name="colorGreenDark">#1D9B90</color>
+    <color name="colorGreenLight">#4AAFA6</color>
+
+    <color name="colorGreen">#43C35F</color>
+    <color name="colorRed">#E94558</color>
+    <color name="colorOrange">#F5A623</color>
+    <color name="colorMidGrey">#8F8E94</color>
+    <color name="colorSeparator">#cfcfcf</color>
+    <color name="colorDisable">#929292</color>
+    <color name="colorBorder">#CECECE</color>
+    <color name="colorPlaceholder">#80a5c1</color>
+
+    <color name="colorTransparent">#00000000</color>
+
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="risk_color_default">#006aa6</color>
+    <color name="risk_color_normal">#43C35F</color>
+    <color name="risk_color_low">#F5DE23</color>
+    <color name="risk_color_medium">#F5A623</color>
+    <color name="risk_color_high">#E94558</color>
+    <color name="risk_color_panic">#000000</color>
+    <color name="dark_gray">#393939</color>
+    <color name="light_gray">#cfcfcf</color>
+    <color name="black_alpha">#9C000000</color>
+
+    <color name="main_tab_color">#E2E2E2</color>
 </resources>

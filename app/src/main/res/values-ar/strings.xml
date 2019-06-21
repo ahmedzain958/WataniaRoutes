@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">WataniaRoutes</string>
-    <string name="Route">طريق</string>
+    <string name="Route">الطريق</string>
     <string name="investor">المستثمر</string>
     <string name="location">الموقع</string>
     <string name="Area">المساحة</string>
