@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "158279464870",
+    "firebase_url": "https://wataniaroutes.firebaseio.com",
+    "project_id": "wataniaroutes",
+    "storage_bucket": "wataniaroutes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158279464870:android:a80ed0153d91f75c",
+        "android_client_info": {
+          "package_name": "com.zainco.wataniaroutes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "158279464870-lg3h9gu3hke3lji124km53mqqsv99dv4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAm-kzIdpIjmXJn0bIp2UmkCL6GgJmAVCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "158279464870-lg3h9gu3hke3lji124km53mqqsv99dv4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
