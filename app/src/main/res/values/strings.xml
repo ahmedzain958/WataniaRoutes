@@ -1,8 +1,23 @@
 <resources>
-    <string name="app_name">WataniaRoutes</string>
-    <string name="Route">طريق</string>
+    <string name="app_name">جهاز مشروعات الخدمة الوطنية</string>
+    <string name="Route">الطريق</string>
     <string name="investor">المستثمر</string>
     <string name="location">الموقع</string>
     <string name="Area">المساحة</string>
     <string name="RentValue">القيمة الايجارية</string>
+    <string name="Add">اضافة</string>
+    <string name="Search">بحث</string>
+    <string name="project_name">المشروع</string>
+    <string name="price">السعر</string>
+    <string name="RentType">معدل الإيجار</string>
+    <string name="start_date">بداية التعاقد</string>
+    <string name="end_date">نهاية التعاقد</string>
+    <string name="period">مدة التعاقد</string>
+    <string name="annual_raise">الزيادة السنوية</string>
+    <string name="notes">الملاحظات</string>
+    <string-array name="rent_type">
+        <item>سنوي</item>
+        <item>شهري</item>
+        <item>نصف سنوي</item>
+    </string-array>
 </resources>
