@@ -14,6 +14,9 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        fab.setOnClickListener {
+
+        }
         recycler.layoutManager = LinearLayoutManager(this)
         FirebaseDatabaseHelper(this).readBooks(object : FirebaseDatabaseHelper.DataStatus {
             override fun dataIsFiltered(query: String) {

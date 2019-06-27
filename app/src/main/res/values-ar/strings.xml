@@ -16,6 +16,10 @@
     <string name="period">مدة التعاقد</string>
     <string name="annual_raise">الزيادة السنوية</string>
     <string name="notes">الملاحظات</string>
+    <string name="add_project">إضافة مشروع</string>
+    <string name="add_location">إضافة موقع</string>
+    <string name="add_route">إضافة طريق</string>
+    <string name="add_investor">إضافة مستثمر</string>
     <string-array name="rent_type">
         <item>سنوي</item>
         <item>شهري</item>
