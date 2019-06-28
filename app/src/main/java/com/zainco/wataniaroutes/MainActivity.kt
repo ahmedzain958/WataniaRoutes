@@ -15,7 +15,8 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         fab.setOnClickListener {
-
+            val intent = Intent(this, AddActivity::class.java)
+            startActivity(intent)
         }
         recycler.layoutManager = LinearLayoutManager(this)
         FirebaseDatabaseHelper(this).readBooks(object : FirebaseDatabaseHelper.DataStatus {

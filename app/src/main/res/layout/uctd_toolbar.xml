@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.AppBarLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/uctdappbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/uctdToolbar"
+            android:layout_width="match_parent"
+            app:titleTextColor="@android:color/white"
+            app:popupTheme="@style/PopupMenuStyle"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/colorPrimary">
+        <TextView
+                android:textColor="@android:color/white"
+                android:id="@+id/toolbar_title"
+                android:gravity="center"
+                tools:text="test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </androidx.appcompat.widget.Toolbar>
+</com.google.android.material.appbar.AppBarLayout>

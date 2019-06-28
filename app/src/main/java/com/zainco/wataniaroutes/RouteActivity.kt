@@ -1,22 +1,17 @@
 package com.zainco.wataniaroutes
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.uctd_toolbar.*
 
-class AddActivity : BaseActivity() {
+class RouteActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add)
-        initToolbar(uctdToolbar, getString(R.string.add_project), withBack = true)
-        cardAddRoute.setOnClickListener {
-            val intent = Intent(this, RouteActivity::class.java)
-            startActivity(intent)
-        }
+        setContentView(R.layout.activity_route)
+        initToolbar(uctdToolbar, getString(R.string.add_route), withBack = true)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

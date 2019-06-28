@@ -6,6 +6,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".AddActivity">
+    <include
+            android:id="@+id/addToolbar"
+            layout="@layout/uctd_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.cardview.widget.CardView
             android:layout_margin="16dp"
@@ -15,7 +23,7 @@
             android:id="@+id/cardAddProject"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addToolbar"
             android:layout_width="0dp"
             android:layout_height="80dp">
 

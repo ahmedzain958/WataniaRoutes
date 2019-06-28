@@ -20,6 +20,7 @@
     <string name="add_location">إضافة موقع</string>
     <string name="add_route">إضافة طريق</string>
     <string name="add_investor">إضافة مستثمر</string>
+    <string name="search_route">بحث في الطرق</string>
     <string-array name="rent_type">
         <item>سنوي</item>
         <item>شهري</item>
