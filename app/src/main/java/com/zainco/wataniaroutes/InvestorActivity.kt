@@ -9,19 +9,19 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_add_route.*
+import kotlinx.android.synthetic.main.activity_add_investor.*
 import kotlinx.android.synthetic.main.uctd_toolbar.*
 
 
-class RouteActivity : BaseActivity(), ICreateActivity {
+class InvestorActivity : BaseActivity(), ICreateActivity {
     private val db = FirebaseFirestore.getInstance()
-    private val routeRef: CollectionReference = db.collection("Routes")
-    val routesNames = mutableListOf<String>()
+    private val investorRef: CollectionReference = db.collection("Investor")
+    val investorsNames = mutableListOf<String>()
 
     override fun createNew(value: String) {
-        val routeMap = mapOf("route" to value)
-        routeRef
-            .document(value).set(routeMap)
+        val investorMap = mapOf("investor" to value)
+        investorRef
+            .document(value).set(investorMap)
             .addOnSuccessListener {
                 Toast.makeText(this, "تم الإضافة بنجاح", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {
@@ -31,33 +31,30 @@ class RouteActivity : BaseActivity(), ICreateActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_route)
-        initToolbar(uctdToolbar, getString(R.string.add_route), withBack = true)
+        setContentView(R.layout.activity_add_investor)
+        initToolbar(uctdToolbar, getString(R.string.add_investor), withBack = true)
         fab.setOnClickListener {
-            NewDialog(R.string.route, R.string.add_route).show(
-                getSupportFragmentManager(),
-                getString(R.string.add_route)
-            )
+            NewDialog(R.string.investor,R.string.add_investor).show(getSupportFragmentManager(), getString(R.string.add_investor))
         }
-        editTextSearchRoute.addTextChangedListener(object : TextWatcher {
+        editTextSearchInvestor.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                val x = 0
+                val x =0
 
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                val x = 0
+                val x =0
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                loadRoutes(editTextSearchRoute.text.toString())
+                loadInvestors (editTextSearchInvestor.text.toString())
             }
 
         })
     }
 
-    fun loadRoutes(routeName: String) {
-        routeRef.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+    fun loadInvestors(InvestorName: String) {
+        investorRef.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
             if (firebaseFirestoreException != null) {
                 return@addSnapshotListener
             }
@@ -65,21 +62,21 @@ class RouteActivity : BaseActivity(), ICreateActivity {
                 Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()
             } else {
                 if (querySnapshot.size() > 0) {
-                    recyclerViewRoutes.visibility = View.VISIBLE
+                    recyclerViewInvestors.visibility = View.VISIBLE
                     textNoData.visibility = View.GONE
-                    routesNames.clear()
+                    investorsNames.clear()
                     for (documentSnapshot in querySnapshot) {
-                        if (!routeName.equals("")) {
-                            if (documentSnapshot.id.contains(routeName)) {
-                                routesNames.add(documentSnapshot.id)
+                        if (!InvestorName.equals("")) {
+                            if (documentSnapshot.id.contains(InvestorName)) {
+                                investorsNames.add(documentSnapshot.id)
                             }
                         } else {
-                            routesNames.add(documentSnapshot.id)
+                            investorsNames.add(documentSnapshot.id)
                         }
                     }
-                    fillRoutesList(routesNames)
+                    fillInvestorsList(investorsNames)
                 } else {
-                    recyclerViewRoutes.visibility = View.GONE
+                    recyclerViewInvestors.visibility = View.GONE
                     textNoData.visibility = View.VISIBLE
                 }
 
@@ -90,29 +87,29 @@ class RouteActivity : BaseActivity(), ICreateActivity {
 
     override fun onResume() {
         super.onResume()
-        loadRoutes("")
+        loadInvestors("")
     }
 
     override fun onStart() {
         super.onStart()
-        loadRoutes("")
+        loadInvestors("")
     }
 
-    private fun fillRoutesList(routesNames: MutableList<String>) {
-        recyclerViewRoutes.layoutManager = LinearLayoutManager(this)
-        recyclerViewRoutes.setHasFixedSize(true)
-        recyclerViewRoutes.adapter = ValuesAdapter(R.string.route, routesNames, object : ValuesAdapter.OnValueClicked {
+    private fun fillInvestorsList(InvestorsNames: MutableList<String>) {
+        recyclerViewInvestors.layoutManager = LinearLayoutManager(this)
+        recyclerViewInvestors.setHasFixedSize(true)
+        recyclerViewInvestors.adapter = ValuesAdapter(R.string.investor,InvestorsNames, object : ValuesAdapter.OnValueClicked {
             override fun setOnValueClicked(value: String) {
                 generateMessageAlert(
-                    getString(R.string.delete_route) + " " + value,
+                    getString(R.string.delete_investor)+" " + value,
                     getString(R.string.delete),
                     getString(R.string.cancel),
                     null,
                     object : DialogClickListener {
                         override fun onDialogButtonClick() {
-                            val routeDocumentRef = routeRef.document(value)
-                            routeDocumentRef.delete().addOnCompleteListener {
-                                Toast.makeText(this@RouteActivity, "تم حذف الطريق", Toast.LENGTH_SHORT).show()
+                            val InvestorDocumentRef = investorRef.document(value)
+                            InvestorDocumentRef.delete().addOnCompleteListener {
+                                Toast.makeText(this@InvestorActivity, "تم حذف المستثمر", Toast.LENGTH_SHORT).show()
                             }
                         }
                     },

@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.res.Configuration
 import com.zainco.wataniaroutes.javakoin.start
 
-class ApplicationClass: Application() {
+class ApplicationClass : Application() {
 
     lateinit var localeManager: LocaleManager
     override fun attachBaseContext(base: Context) {
@@ -17,6 +17,7 @@ class ApplicationClass: Application() {
         super.onCreate()
         start(this)
     }
+
     override fun onConfigurationChanged(newConfig: Configuration?) {
         super.onConfigurationChanged(newConfig)
         localeManager.setLocale(localeManager.getLanguage())

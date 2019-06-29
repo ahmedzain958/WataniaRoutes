@@ -9,19 +9,19 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_add_route.*
+import kotlinx.android.synthetic.main.activity_add_rentrate.*
 import kotlinx.android.synthetic.main.uctd_toolbar.*
 
 
-class RouteActivity : BaseActivity(), ICreateActivity {
+class RentRateActivity : BaseActivity(), ICreateActivity {
     private val db = FirebaseFirestore.getInstance()
-    private val routeRef: CollectionReference = db.collection("Routes")
-    val routesNames = mutableListOf<String>()
+    private val rentRateRef: CollectionReference = db.collection("RentRates")
+    val rentRatesNames = mutableListOf<String>()
 
     override fun createNew(value: String) {
-        val routeMap = mapOf("route" to value)
-        routeRef
-            .document(value).set(routeMap)
+        val rentRatesMap = mapOf("rentrate" to value)
+        rentRateRef
+            .document(value).set(rentRatesMap)
             .addOnSuccessListener {
                 Toast.makeText(this, "تم الإضافة بنجاح", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {
@@ -31,33 +31,30 @@ class RouteActivity : BaseActivity(), ICreateActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_route)
-        initToolbar(uctdToolbar, getString(R.string.add_route), withBack = true)
+        setContentView(R.layout.activity_add_rentrate)
+        initToolbar(uctdToolbar, getString(R.string.add_rentrate), withBack = true)
         fab.setOnClickListener {
-            NewDialog(R.string.route, R.string.add_route).show(
-                getSupportFragmentManager(),
-                getString(R.string.add_route)
-            )
+            NewDialog(R.string.rentrate,R.string.add_rentrate).show(getSupportFragmentManager(), getString(R.string.add_rentrate))
         }
-        editTextSearchRoute.addTextChangedListener(object : TextWatcher {
+        editTextSearchRentRate.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                val x = 0
+                val x =0
 
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                val x = 0
+                val x =0
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                loadRoutes(editTextSearchRoute.text.toString())
+                loadRentRates(editTextSearchRentRate.text.toString())
             }
 
         })
     }
 
-    fun loadRoutes(routeName: String) {
-        routeRef.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+    fun loadRentRates(rentRateName: String) {
+        rentRateRef.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
             if (firebaseFirestoreException != null) {
                 return@addSnapshotListener
             }
@@ -65,21 +62,21 @@ class RouteActivity : BaseActivity(), ICreateActivity {
                 Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()
             } else {
                 if (querySnapshot.size() > 0) {
-                    recyclerViewRoutes.visibility = View.VISIBLE
+                    recyclerViewRentRates.visibility = View.VISIBLE
                     textNoData.visibility = View.GONE
-                    routesNames.clear()
+                    rentRatesNames.clear()
                     for (documentSnapshot in querySnapshot) {
-                        if (!routeName.equals("")) {
-                            if (documentSnapshot.id.contains(routeName)) {
-                                routesNames.add(documentSnapshot.id)
+                        if (!rentRateName.equals("")) {
+                            if (documentSnapshot.id.contains(rentRateName)) {
+                                rentRatesNames.add(documentSnapshot.id)
                             }
                         } else {
-                            routesNames.add(documentSnapshot.id)
+                            rentRatesNames.add(documentSnapshot.id)
                         }
                     }
-                    fillRoutesList(routesNames)
+                    fillRentratesList(rentRatesNames)
                 } else {
-                    recyclerViewRoutes.visibility = View.GONE
+                    recyclerViewRentRates.visibility = View.GONE
                     textNoData.visibility = View.VISIBLE
                 }
 
@@ -90,29 +87,29 @@ class RouteActivity : BaseActivity(), ICreateActivity {
 
     override fun onResume() {
         super.onResume()
-        loadRoutes("")
+        loadRentRates("")
     }
 
     override fun onStart() {
         super.onStart()
-        loadRoutes("")
+        loadRentRates("")
     }
 
-    private fun fillRoutesList(routesNames: MutableList<String>) {
-        recyclerViewRoutes.layoutManager = LinearLayoutManager(this)
-        recyclerViewRoutes.setHasFixedSize(true)
-        recyclerViewRoutes.adapter = ValuesAdapter(R.string.route, routesNames, object : ValuesAdapter.OnValueClicked {
+    private fun fillRentratesList(rentRatesNames: MutableList<String>) {
+        recyclerViewRentRates.layoutManager = LinearLayoutManager(this)
+        recyclerViewRentRates.setHasFixedSize(true)
+        recyclerViewRentRates.adapter = ValuesAdapter(R.string.rentrate,rentRatesNames, object : ValuesAdapter.OnValueClicked {
             override fun setOnValueClicked(value: String) {
                 generateMessageAlert(
-                    getString(R.string.delete_route) + " " + value,
+                    getString(R.string.delete_rentrate)+" " + value,
                     getString(R.string.delete),
                     getString(R.string.cancel),
                     null,
                     object : DialogClickListener {
                         override fun onDialogButtonClick() {
-                            val routeDocumentRef = routeRef.document(value)
-                            routeDocumentRef.delete().addOnCompleteListener {
-                                Toast.makeText(this@RouteActivity, "تم حذف الطريق", Toast.LENGTH_SHORT).show()
+                            val rentRateDocumentRef = rentRateRef.document(value)
+                            rentRateDocumentRef.delete().addOnCompleteListener {
+                                Toast.makeText(this@RentRateActivity, "تم حذف معدل الايجار", Toast.LENGTH_SHORT).show()
                             }
                         }
                     },

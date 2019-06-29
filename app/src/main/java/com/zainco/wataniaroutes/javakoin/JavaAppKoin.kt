@@ -1,8 +1,6 @@
 package com.zainco.wataniaroutes.javakoin
 
 import android.app.Application
-import com.zainco.wataniaroutes.javakoin.localModule
-
 import org.koin.android.ext.koin.with
 import org.koin.standalone.StandAloneContext
 

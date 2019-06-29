@@ -33,7 +33,7 @@ class ProjectsAdapter(val projects: List<Project>) : RecyclerView.Adapter<Projec
 
     inner class ProjectsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textViewProject: TextView = view.textViewProject
-        val textViewRoute: TextView = view.textViewRoute
+        val textViewRoute: TextView = view.textViewValue
         val textViewInvestor: TextView = view.textViewInvestor
         val textViewLocation: TextView = view.textViewLocation
         val textViewArea: TextView = view.textViewArea

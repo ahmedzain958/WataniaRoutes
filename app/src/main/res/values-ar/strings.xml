@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">جهاز مشروعات الخدمة الوطنية</string>
-    <string name="Route">الطريق</string>
+    <string name="route">الطريق</string>
     <string name="investor">المستثمر</string>
     <string name="location">الموقع</string>
     <string name="Area">المساحة</string>
@@ -21,6 +21,18 @@
     <string name="add_route">إضافة طريق</string>
     <string name="add_investor">إضافة مستثمر</string>
     <string name="search_route">بحث في الطرق</string>
+    <string name="cancel">إلغاء</string>
+    <string name="no_data">لا يوجد بيانات</string>
+    <string name="delete_route">هل تريد حذف الطريق</string>
+    <string name="delete">حذف</string>
+    <string name="search_location">بحث في المواقع</string>
+    <string name="delete_location">هل تريد حذف الموقع</string>
+    <string name="add_rentrate">معدل إيجار</string>
+    <string name="search_investors">بحث في المستثمرين</string>
+    <string name="delete_investor">هل تريد حذف المستثمر</string>
+    <string name="search_rentrate">بحث في معدل الإيجار</string>
+    <string name="rentrate">معدل الإيجار</string>
+    <string name="delete_rentrate">هل تريد حذف معدل الإيجار</string>
     <string-array name="rent_type">
         <item>سنوي</item>
         <item>شهري</item>

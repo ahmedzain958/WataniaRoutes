@@ -160,7 +160,7 @@
                       android:layout_marginStart="16dp"
                       android:gravity="center"
                       android:layout_height="wrap_content"
-                      android:text="@string/add_investor"/>
+                      android:text="@string/add_rentrate"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,19 +9,19 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_add_route.*
+import kotlinx.android.synthetic.main.activity_add_location.*
 import kotlinx.android.synthetic.main.uctd_toolbar.*
 
 
-class RouteActivity : BaseActivity(), ICreateActivity {
+class LocationActivity : BaseActivity(), ICreateActivity {
     private val db = FirebaseFirestore.getInstance()
-    private val routeRef: CollectionReference = db.collection("Routes")
-    val routesNames = mutableListOf<String>()
+    private val locationRef: CollectionReference = db.collection("Locations")
+    val locationsNames = mutableListOf<String>()
 
     override fun createNew(value: String) {
-        val routeMap = mapOf("route" to value)
-        routeRef
-            .document(value).set(routeMap)
+        val locationMap = mapOf("location" to value)
+        locationRef
+            .document(value).set(locationMap)
             .addOnSuccessListener {
                 Toast.makeText(this, "تم الإضافة بنجاح", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {
@@ -31,33 +31,30 @@ class RouteActivity : BaseActivity(), ICreateActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_route)
-        initToolbar(uctdToolbar, getString(R.string.add_route), withBack = true)
+        setContentView(R.layout.activity_add_location)
+        initToolbar(uctdToolbar, getString(R.string.add_location), withBack = true)
         fab.setOnClickListener {
-            NewDialog(R.string.route, R.string.add_route).show(
-                getSupportFragmentManager(),
-                getString(R.string.add_route)
-            )
+            NewDialog(R.string.location,R.string.add_location).show(getSupportFragmentManager(), getString(R.string.add_location))
         }
-        editTextSearchRoute.addTextChangedListener(object : TextWatcher {
+        editTextSearchLocation.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                val x = 0
+                val x =0
 
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                val x = 0
+                val x =0
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                loadRoutes(editTextSearchRoute.text.toString())
+                loadLocations (editTextSearchLocation.text.toString())
             }
 
         })
     }
 
-    fun loadRoutes(routeName: String) {
-        routeRef.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+    fun loadLocations(locationName: String) {
+        locationRef.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
             if (firebaseFirestoreException != null) {
                 return@addSnapshotListener
             }
@@ -65,21 +62,21 @@ class RouteActivity : BaseActivity(), ICreateActivity {
                 Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()
             } else {
                 if (querySnapshot.size() > 0) {
-                    recyclerViewRoutes.visibility = View.VISIBLE
+                    recyclerViewLocations.visibility = View.VISIBLE
                     textNoData.visibility = View.GONE
-                    routesNames.clear()
+                    locationsNames.clear()
                     for (documentSnapshot in querySnapshot) {
-                        if (!routeName.equals("")) {
-                            if (documentSnapshot.id.contains(routeName)) {
-                                routesNames.add(documentSnapshot.id)
+                        if (!locationName.equals("")) {
+                            if (documentSnapshot.id.contains(locationName)) {
+                                locationsNames.add(documentSnapshot.id)
                             }
                         } else {
-                            routesNames.add(documentSnapshot.id)
+                            locationsNames.add(documentSnapshot.id)
                         }
                     }
-                    fillRoutesList(routesNames)
+                    fillLocationsList(locationsNames)
                 } else {
-                    recyclerViewRoutes.visibility = View.GONE
+                    recyclerViewLocations.visibility = View.GONE
                     textNoData.visibility = View.VISIBLE
                 }
 
@@ -90,29 +87,29 @@ class RouteActivity : BaseActivity(), ICreateActivity {
 
     override fun onResume() {
         super.onResume()
-        loadRoutes("")
+        loadLocations("")
     }
 
     override fun onStart() {
         super.onStart()
-        loadRoutes("")
+        loadLocations("")
     }
 
-    private fun fillRoutesList(routesNames: MutableList<String>) {
-        recyclerViewRoutes.layoutManager = LinearLayoutManager(this)
-        recyclerViewRoutes.setHasFixedSize(true)
-        recyclerViewRoutes.adapter = ValuesAdapter(R.string.route, routesNames, object : ValuesAdapter.OnValueClicked {
+    private fun fillLocationsList(locationsNames: MutableList<String>) {
+        recyclerViewLocations.layoutManager = LinearLayoutManager(this)
+        recyclerViewLocations.setHasFixedSize(true)
+        recyclerViewLocations.adapter = ValuesAdapter(R.string.location,locationsNames, object : ValuesAdapter.OnValueClicked {
             override fun setOnValueClicked(value: String) {
                 generateMessageAlert(
-                    getString(R.string.delete_route) + " " + value,
+                    getString(R.string.delete_location)+" " + value,
                     getString(R.string.delete),
                     getString(R.string.cancel),
                     null,
                     object : DialogClickListener {
                         override fun onDialogButtonClick() {
-                            val routeDocumentRef = routeRef.document(value)
-                            routeDocumentRef.delete().addOnCompleteListener {
-                                Toast.makeText(this@RouteActivity, "تم حذف الطريق", Toast.LENGTH_SHORT).show()
+                            val locationDocumentRef = locationRef.document(value)
+                            locationDocumentRef.delete().addOnCompleteListener {
+                                Toast.makeText(this@LocationActivity, "تم حذف الموقع", Toast.LENGTH_SHORT).show()
                             }
                         }
                     },
