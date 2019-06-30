@@ -10,7 +10,7 @@ data class Project(
     val Period: String = "",
     val Price: Int = 0,
     val ProjectName: String = "",
-    val RentType: Int = 0,
+    val RentRate: String = "",
     val RentValue: Long = 0,
     val Route: String = "",
     val StartDate: String = ""
