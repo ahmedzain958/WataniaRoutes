@@ -42,7 +42,7 @@
                         android:layout_marginEnd="10dp"
                         android:background="@color/colorPlaceholder"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout
@@ -67,13 +67,13 @@
 
                 <TextView
                         android:id="@+id/textRoute"
-                        tools:text="@string/route"
+                        android:text="@string/route"
                         android:gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:background="@color/colorPlaceholder"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout
@@ -98,14 +98,13 @@
 
                 <TextView
                         android:id="@+id/textInvestor"
-                        tools:text="@string/investor"
+                        android:text="@string/investor"
                         android:gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:background="@color/colorPlaceholder"
-
                         android:layout_width="0dp"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout
@@ -130,14 +129,13 @@
 
                 <TextView
                         android:id="@+id/textLocation"
-                        tools:text="@string/location"
+                        android:text="@string/location"
                         android:gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:background="@color/colorPlaceholder"
-
                         android:layout_width="0dp"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout
@@ -164,12 +162,13 @@
                         android:id="@+id/editArea"
                         android:hint="@string/Area"
                         android:gravity="center"
+                        android:inputType="numberDecimal"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:background="@color/colorPlaceholder"
-
+                        android:textColorHint="@color/white"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout
@@ -197,12 +196,12 @@
                         android:hint="@string/price"
                         android:gravity="center"
                         android:layout_marginStart="10dp"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:layout_marginEnd="10dp"
                         android:background="@color/colorPlaceholder"
-
+                        android:textColorHint="@color/white"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout
@@ -229,13 +228,13 @@
                         android:id="@+id/editRentValue"
                         android:hint="@string/RentValue"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:background="@color/colorPlaceholder"
-
+                        android:textColorHint="@color/white"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout
@@ -261,15 +260,13 @@
                 <TextView
                         android:id="@+id/textRentType"
                         android:textAlignment="center"
-
                         android:text="@string/rentrate"
                         android:gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:background="@color/colorPlaceholder"
-
                         android:layout_width="0dp"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:layout_height="match_parent"
 
                 />
@@ -301,9 +298,8 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:background="@color/colorPlaceholder"
-
                         android:layout_width="0dp"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout
@@ -335,7 +331,7 @@
                         android:background="@color/colorPlaceholder"
 
                         android:layout_width="0dp"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout
@@ -365,9 +361,10 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:background="@color/colorPlaceholder"
+                        android:textColorHint="@color/white"
 
                         android:layout_width="0dp"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout
@@ -396,6 +393,7 @@
                         android:gravity="center"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
+                        android:textColorHint="@color/white"
                         android:inputType="number"
                         android:background="@color/colorPlaceholder"
                         android:layout_width="0dp"
@@ -435,9 +433,11 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:background="@color/colorPlaceholder"
-
+                        android:textColorHint="@color/white"
+                        android:lines="2"
+                        android:maxLength="150"
                         android:layout_width="0dp"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:layout_height="match_parent"/>
             </LinearLayout>
 

@@ -8,7 +8,7 @@
     <string name="Add">اضافة</string>
     <string name="Search">بحث</string>
     <string name="project_name">المشروع</string>
-    <string name="price">السعر</string>
+    <string name="price">سعر المتر</string>
     <string name="RentType">معدل الإيجار</string>
     <string name="start_date">بداية التعاقد</string>
     <string name="end_date">نهاية التعاقد</string>
@@ -32,6 +32,10 @@
     <string name="search_rentrate">بحث في معدل الإيجار</string>
     <string name="rentrate">معدل الإيجار</string>
     <string name="delete_rentrate">هل تريد حذف معدل الإيجار</string>
+    <string name="choose_routes">اختر من الطرق</string>
+    <string name="choose_investors">اختر من المستثمرين</string>
+    <string name="choose_location">اختر من المواقع</string>
+    <string name="choose_rent_type">اختر معدل الايجار</string>
     <string-array name="rent_type">
         <item>سنوي</item>
         <item>شهري</item>
