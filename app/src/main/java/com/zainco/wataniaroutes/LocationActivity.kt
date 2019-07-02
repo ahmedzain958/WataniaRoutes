@@ -17,7 +17,6 @@ class LocationActivity : BaseActivity(), ICreateActivity {
     private val db = FirebaseFirestore.getInstance()
     private val locationRef: CollectionReference = db.collection("Locations")
     val locationsNames = mutableListOf<String>()
-
     override fun createNew(value: String) {
         val locationMap = mapOf("location" to value)
         locationRef

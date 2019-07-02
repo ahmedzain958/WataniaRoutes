@@ -292,7 +292,7 @@
                         android:layout_height="match_parent"/>
 
                 <TextView
-                        android:id="@+id/editStartDate"
+                        android:id="@+id/textStartDate"
                         android:hint="@string/start_date"
                         android:gravity="center"
                         android:layout_marginStart="10dp"
@@ -323,7 +323,7 @@
                         android:layout_height="match_parent"/>
 
                 <TextView
-                        android:id="@+id/editEndDate"
+                        android:id="@+id/textEndDate"
                         android:hint="@string/end_date"
                         android:gravity="center"
                         android:layout_marginStart="10dp"
@@ -362,7 +362,6 @@
                         android:layout_marginEnd="10dp"
                         android:background="@color/colorPlaceholder"
                         android:textColorHint="@color/white"
-
                         android:layout_width="0dp"
                         android:layout_weight="2.5"
                         android:layout_height="match_parent"/>

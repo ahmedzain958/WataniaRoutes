@@ -1,17 +1,17 @@
 package com.zainco.wataniaroutes
 
 data class Project(
-    val AnnualRaise: Double = 0.0,
-    val Area: String = "1",
-    val EndDate: String = "",
-    val Investor: String = "",
-    val Location: String = "",
-    val Notes: String = "",
-    val Period: String = "",
-    val Price: Int = 0,
-    val ProjectName: String = "",
-    val RentRate: String = "",
-    val RentValue: Long = 0,
-    val Route: String = "",
-    val StartDate: String = ""
+    val AnnualRaise: Double? = null,
+    val Area: String? = null,
+    val EndDate: String? = null,
+    val Investor: String? = null,
+    val Location: String? = null,
+    val Notes: String? =null,
+    val Period: String? = null,
+    val Price: Int? = null,
+    val ProjectName: String? = null,
+    val RentRate: String? = null,
+    val RentValue: Long? = null,
+    val Route: String? = null,
+    val StartDate: String? = null
 )

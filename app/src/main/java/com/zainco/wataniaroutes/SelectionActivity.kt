@@ -51,13 +51,10 @@ class SelectionActivity : BaseActivity() {
         editTextSearch.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 val x = 0
-
             }
-
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 val x = 0
             }
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (intent?.getIntExtra(SELECTION, -1) == ROUTE_SELECTION_CODE) {
                     loadRoutes(editTextSearch.text.toString())
@@ -69,7 +66,6 @@ class SelectionActivity : BaseActivity() {
                     loadRentRate(editTextSearch.text.toString())
                 }
             }
-
         })
     }
 
