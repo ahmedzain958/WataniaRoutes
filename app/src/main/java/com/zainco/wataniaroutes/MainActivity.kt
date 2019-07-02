@@ -9,12 +9,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_add_investor.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.fab
 
 class MainActivity : BaseActivity() {
-    lateinit var adapter: ProjectsAdapter
     private val db = FirebaseFirestore.getInstance()
     private val projectRef: CollectionReference = db.collection("projects")
     val projects = mutableListOf<Project>()
@@ -31,15 +29,15 @@ class MainActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        loadProjects("")
+        loadProjects(null)
     }
 
     override fun onStart() {
         super.onStart()
-        loadProjects("")
+        loadProjects(null)
     }
 
-    fun loadProjects(project: Project) {
+    fun loadProjects(project: Project?) {
         projectRef.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
             if (firebaseFirestoreException != null) {
                 return@addSnapshotListener
@@ -48,21 +46,23 @@ class MainActivity : BaseActivity() {
                 Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()
             } else {
                 if (querySnapshot.size() > 0) {
-                    recyclerViewInvestors.visibility = View.VISIBLE
+                    recycler.visibility = View.VISIBLE
                     textNoData.visibility = View.GONE
-                    projectsNames.clear()
+                    projects.clear()
                     for (documentSnapshot in querySnapshot) {
-                        if (!project.equals("")) {
-                            if (documentSnapshot.id.contains(project)) {
-                                projectsNames.add(documentSnapshot.id)
+                        if (project != null) {
+                            if (documentSnapshot.id.contains(project.ProjectName!!)) {
+                                val project = documentSnapshot.toObject(Project::class.java)
+                                projects.add(project)
                             }
                         } else {
-                            projectsNames.add(documentSnapshot.id)
+                            val project = documentSnapshot.toObject(Project::class.java)
+                            projects.add(project)
                         }
                     }
-                    fillProjectsList(projectsNames)
+                    fillProjectsList(projects)
                 } else {
-                    recyclerViewInvestors.visibility = View.GONE
+                    recycler.visibility = View.GONE
                     textNoData.visibility = View.VISIBLE
                 }
 
@@ -71,29 +71,11 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private fun fillProjectsList(projects: MutableList<Project>) {
+    private fun fillProjectsList(projects: List<Project>) {
         recycler.setHasFixedSize(true)
-        recycler.adapter = ValuesAdapter(R.string.investor, projectsNames, object : ValuesAdapter.OnValueClicked {
-            override fun setOnValueClicked(value: String) {
-                generateMessageAlert(
-                    getString(R.string.delete_investor) + " " + value,
-                    getString(R.string.delete),
-                    getString(R.string.cancel),
-                    null,
-                    object : DialogClickListener {
-                        override fun onDialogButtonClick() {
-                            val InvestorDocumentRef = investorRef.document(value)
-                            InvestorDocumentRef.delete().addOnCompleteListener {
-                                Toast.makeText(this@InvestorActivity, "تم حذف المستثمر", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    },
-                    null,
-                    true
-                )
-            }
-        })
+        recycler.adapter = ProjectsAdapter(projects)
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
