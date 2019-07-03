@@ -1,17 +1,19 @@
 package com.zainco.wataniaroutes
 
+import java.io.Serializable
+
 data class Project(
-    val AnnualRaise: Double? = null,
-    val Area: String? = null,
-    val EndDate: String? = null,
-    val Investor: String? = null,
-    val Location: String? = null,
-    val Notes: String? =null,
-    val Period: String? = null,
-    val Price: Int? = null,
-    val ProjectName: String? = null,
-    val RentRate: String? = null,
-    val RentValue: Long? = null,
-    val Route: String? = null,
-    val StartDate: String? = null
-)
+    var AnnualRaise: Double? = 0.0,
+    var Area: String? = "",
+    var EndDate: String? = "",
+    var Investor: String = "",
+    var Location: String = "",
+    var Notes: String? = "",
+    var Period: String? = "",
+    var Price: Int? = 0,
+    var ProjectName: String = "",
+    var RentRate: String = "",
+    var RentValue: Long? = 0,
+    var Route: String = "",
+    var StartDate: String? = ""
+):Serializable

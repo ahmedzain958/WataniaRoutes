@@ -18,6 +18,7 @@
     <color name="colorPlaceholder">#80a5c1</color>
 
     <color name="colorTransparent">#00000000</color>
+    <color name="edittextBackgroundColor">#4af9ff</color>
 
 
     <color name="white">#ffffff</color>

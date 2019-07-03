@@ -5,13 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.zainco.wataniaroutes.SelectionActivity.Companion.SELECTION
 import kotlinx.android.synthetic.main.activity_add_project.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddProjectActivity : AppCompatActivity() {
+class EditProjectActivity : AppCompatActivity() {
     companion object {
         const val ROUTE_SELECTION_CODE = 300
         const val INVESTOR_SELECTION_CODE = 301
@@ -20,9 +21,13 @@ class AddProjectActivity : AppCompatActivity() {
     }
 
     private val db = FirebaseFirestore.getInstance()
+    lateinit var project: Project
+    private val projectRef: CollectionReference = db.collection("projects")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_project)
+        setContentView(R.layout.activity_edit_project)
+        project = intent.extras.getSerializable("project") as Project
+        loadViews()
         textRoute.setOnClickListener {
             val intent = Intent(this, SelectionActivity::class.java)
             intent.putExtra(SELECTION, ROUTE_SELECTION_CODE)
@@ -163,19 +168,48 @@ class AddProjectActivity : AppCompatActivity() {
                     textRoute.text.toString(),
                     startDate
                 )
+                var updated = false
                 db.collection("projects")
                     .document(editProject.text.toString())
                     .set(project)
                     .addOnSuccessListener {
-                        Toast.makeText(this, "تم الإضافة بنجاح", Toast.LENGTH_SHORT).show()
-                        finish()
+                        if (editProject.text.toString().trim() != project.ProjectName) {
+                            updated = true
+                        }else{
+                            updated = false
+                            Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
+                            finish()
+                        }
                     }.addOnFailureListener {
                         Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()
                     }
-
+                if (updated) {
+                    val projectDocumentRef = projectRef.document(project.ProjectName)
+                    projectDocumentRef.delete().addOnCompleteListener {
+                        Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
+                }
             }
         }
     }
+
+    private fun loadViews() {
+        editAnnualRaise.setText(project.AnnualRaise.toString())
+        editArea.setText(project.Area.toString())
+        textEndDate.setText(project.EndDate.toString())
+        textStartDate.setText(project.StartDate.toString())
+        editNotes.setText(project.Notes.toString())
+        editPeriod.setText(project.Period.toString())
+        editPrice.setText(project.Price.toString())
+        editRentValue.setText(project.RentValue.toString())
+        textRoute.setText(project.Route)
+        textInvestor.setText(project.Investor)
+        textLocation.setText(project.Location)
+        textRentType.setText(project.RentRate)
+        editProject.setText(project.ProjectName)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK) {

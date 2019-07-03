@@ -6,7 +6,7 @@
         android:orientation="vertical"
         app:cardCornerRadius="10dp"
         android:elevation="10dp"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="200dp">
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,12 +48,14 @@
                         android:layout_height="match_parent"/>
                 <TextView
                         android:id="@+id/textViewValue"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:gravity="center"
                         tools:text="@string/route"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"/>
             </LinearLayout>
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                  android:background="@color/colorPrimary"/>
             <LinearLayout
                     android:layout_weight="1"
                     android:layout_width="match_parent"
@@ -70,12 +72,14 @@
                         android:layout_height="match_parent"/>
                 <TextView
                         android:id="@+id/textViewInvestor"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:gravity="center"
                         tools:text="@string/investor"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"/>
             </LinearLayout>
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                  android:background="@color/colorPrimary"/>
             <LinearLayout
                     android:layout_weight="1"
                     android:layout_width="match_parent"
@@ -91,12 +95,14 @@
                         android:layout_height="match_parent"/>
                 <TextView
                         android:id="@+id/textViewLocation"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:gravity="center"
                         tools:text="@string/location"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"/>
             </LinearLayout>
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                  android:background="@color/colorPrimary"/>
             <LinearLayout
                     android:layout_weight="1"
                     android:layout_width="match_parent"
@@ -112,12 +118,14 @@
                         android:layout_height="match_parent"/>
                 <TextView
                         android:id="@+id/textViewArea"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:gravity="center"
                         tools:text="@string/Area"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"/>
             </LinearLayout>
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                  android:background="@color/colorPrimary"/>
             <LinearLayout
                     android:layout_weight="1"
                     android:layout_width="match_parent"
@@ -133,7 +141,7 @@
                         android:layout_height="match_parent"/>
                 <TextView
                         android:id="@+id/textViewRentValue"
-                        android:layout_weight="2"
+                        android:layout_weight="2.5"
                         android:gravity="center"
                         tools:text="@string/RentValue"
                         android:layout_width="0dp"

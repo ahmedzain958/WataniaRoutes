@@ -37,6 +37,8 @@
     <string name="choose_investors">اختر من المستثمرين</string>
     <string name="choose_location">اختر من المواقع</string>
     <string name="choose_rent_type">اختر معدل الايجار</string>
+    <string name="search_projects">بحث في المشاريع</string>
+    <string name="delete_project">هل تريد حذف المشروع</string>
     <string-array name="rent_type">
         <item>سنوي</item>
         <item>شهري</item>

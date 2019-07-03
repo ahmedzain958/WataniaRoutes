@@ -2,6 +2,8 @@ package com.zainco.wataniaroutes
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -10,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.fab
 
 class MainActivity : BaseActivity() {
     private val db = FirebaseFirestore.getInstance()
@@ -24,7 +25,21 @@ class MainActivity : BaseActivity() {
             startActivity(intent)
         }
         recycler.layoutManager = LinearLayoutManager(this)
+        editTextSearchProject.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val x = 0
 
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                val x = 0
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                loadProjects(Project(ProjectName = s.toString().trim()))
+            }
+
+        })
     }
 
     override fun onResume() {
@@ -48,22 +63,23 @@ class MainActivity : BaseActivity() {
                 if (querySnapshot.size() > 0) {
                     recycler.visibility = View.VISIBLE
                     textNoData.visibility = View.GONE
+                    progressBar.visibility = View.GONE
                     projects.clear()
                     for (documentSnapshot in querySnapshot) {
+                        val firestoreProject = documentSnapshot.toObject(Project::class.java)
                         if (project != null) {
-                            if (documentSnapshot.id.contains(project.ProjectName!!)) {
-                                val project = documentSnapshot.toObject(Project::class.java)
-                                projects.add(project)
+                            if (documentSnapshot.id.contains(project.ProjectName)) {
+                                projects.add(firestoreProject)
                             }
                         } else {
-                            val project = documentSnapshot.toObject(Project::class.java)
-                            projects.add(project)
+                            projects.add(firestoreProject)
                         }
                     }
                     fillProjectsList(projects)
                 } else {
                     recycler.visibility = View.GONE
                     textNoData.visibility = View.VISIBLE
+                    progressBar.visibility = View.GONE
                 }
 
             }
@@ -73,7 +89,37 @@ class MainActivity : BaseActivity() {
 
     private fun fillProjectsList(projects: List<Project>) {
         recycler.setHasFixedSize(true)
-        recycler.adapter = ProjectsAdapter(projects)
+        recycler.adapter = ProjectsAdapter(projects, object : ProjectsAdapter.LongClickListener {
+            override fun onLongClick(project: Project) {
+                generateMessageAlert(
+                    getString(R.string.delete_project) + " " + project.ProjectName,
+                    getString(R.string.delete),
+                    getString(R.string.cancel),
+                    null,
+                    object : DialogClickListener {
+                        override fun onDialogButtonClick() {
+                            val projectDocumentRef = projectRef.document(project.ProjectName)
+                            projectDocumentRef.delete().addOnCompleteListener {
+                                Toast.makeText(this@MainActivity, "تم حذف المشروع", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    },
+                    null,
+                    true
+                )
+            }
+        }, object : ProjectsAdapter.ClickListener {
+            override fun onClick(project: Project) {
+                val intent = Intent(this@MainActivity, EditProjectActivity::class.java)
+                intent.putExtra("project", project)
+                startActivity(intent)
+            }
+
+        })
+        if (projects.size == 0) {
+            recycler.visibility = View.GONE
+            textNoData.visibility = View.VISIBLE
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

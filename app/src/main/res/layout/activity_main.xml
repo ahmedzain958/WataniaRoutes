@@ -10,11 +10,9 @@
     <EditText
             android:layout_width="250dp"
             android:layout_height="50dp"
-            android:hint="@string/search_investors"
+            android:hint="@string/search_projects"
             android:ems="10"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:background="@color/colorMidGrey"
+            android:background="@drawable/rounded_edittext"
             android:gravity="center"
             android:lines="1"
             app:layout_constraintTop_toTopOf="parent"

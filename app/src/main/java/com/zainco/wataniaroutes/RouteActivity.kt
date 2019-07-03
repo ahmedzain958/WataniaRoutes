@@ -19,7 +19,7 @@ class RouteActivity : BaseActivity(), ICreateActivity {
     val routesNames = mutableListOf<String>()
 
     override fun createNew(value: String) {
-        val routeMap = mapOf("route" to value)
+        val routeMap = mapOf("route" to value.replace("/","").replace("/",""))
         routeRef
             .document(value).set(routeMap)
             .addOnSuccessListener {

@@ -12,15 +12,21 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".SelectionActivity">
+        <activity android:name=".SelectionActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustNothing">
         </activity>
-        <activity android:name=".RouteActivity">
+        <activity android:name=".RouteActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustNothing">
         </activity>
-        <activity android:name=".AddActivity">
+        <activity android:name=".AddActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustNothing">
         </activity>
         <activity
                 android:name=".AddProjectActivity"
-                android:windowSoftInputMode="adjustResize">
+                android:windowSoftInputMode="adjustNothing">
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -29,9 +35,18 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".LocationActivity"/>
-        <activity android:name=".InvestorActivity"/>
-        <activity android:name=".RentRateActivity"/>
+        <activity android:name=".LocationActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustNothing"/>
+        <activity android:name=".InvestorActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustNothing"/>
+        <activity android:name=".RentRateActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustNothing"/>
+        <activity android:name=".EditProjectActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustNothing"/>
     </application>
 
 </manifest>

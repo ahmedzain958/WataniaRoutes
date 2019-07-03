@@ -31,6 +31,7 @@
                       android:layout_height="match_parent">
             <ImageView
                     android:layout_width="50dp"
+                    android:layout_marginStart="10dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_business_white"
             />
@@ -63,6 +64,7 @@
                       android:layout_height="match_parent">
             <ImageView
                     android:layout_width="50dp"
+                    android:layout_marginStart="10dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_route_white"
             />
@@ -94,6 +96,7 @@
                       android:layout_height="match_parent">
             <ImageView
                     android:layout_width="50dp"
+                    android:layout_marginStart="10dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_location_white"
             />
@@ -122,6 +125,7 @@
                       android:layout_height="match_parent">
             <ImageView
                     android:layout_width="50dp"
+                    android:layout_marginStart="10dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_investor_white"
             />
@@ -150,6 +154,7 @@
                       android:layout_height="match_parent">
             <ImageView
                     android:layout_width="50dp"
+                    android:layout_marginStart="16dp"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_rentrate_white"
             />
