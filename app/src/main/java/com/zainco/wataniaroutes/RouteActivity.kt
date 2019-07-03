@@ -19,9 +19,10 @@ class RouteActivity : BaseActivity(), ICreateActivity {
     val routesNames = mutableListOf<String>()
 
     override fun createNew(value: String) {
-        val routeMap = mapOf("route" to value.replace("/","").replace("/",""))
+        val replacedValue = value.replace("/","-")
+        val routeMap = mapOf("route" to replacedValue)
         routeRef
-            .document(value).set(routeMap)
+            .document(replacedValue).set(routeMap)
             .addOnSuccessListener {
                 Toast.makeText(this, "تم الإضافة بنجاح", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {

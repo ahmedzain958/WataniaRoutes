@@ -19,9 +19,10 @@ class InvestorActivity : BaseActivity(), ICreateActivity {
     val investorsNames = mutableListOf<String>()
 
     override fun createNew(value: String) {
-        val investorMap = mapOf("investor" to value)
+        val replacedValue = value.replace("/","-")
+        val investorMap = mapOf("investor" to replacedValue)
         investorRef
-            .document(value).set(investorMap)
+            .document(replacedValue).set(investorMap)
             .addOnSuccessListener {
                 Toast.makeText(this, "تم الإضافة بنجاح", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {

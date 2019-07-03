@@ -18,9 +18,10 @@ class LocationActivity : BaseActivity(), ICreateActivity {
     private val locationRef: CollectionReference = db.collection("Locations")
     val locationsNames = mutableListOf<String>()
     override fun createNew(value: String) {
-        val locationMap = mapOf("location" to value)
+        val replacedValue = value.replace("/","-")
+        val locationMap = mapOf("location" to replacedValue)
         locationRef
-            .document(value).set(locationMap)
+            .document(replacedValue).set(locationMap)
             .addOnSuccessListener {
                 Toast.makeText(this, "تم الإضافة بنجاح", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {

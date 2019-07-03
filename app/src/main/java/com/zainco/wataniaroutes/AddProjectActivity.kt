@@ -163,8 +163,9 @@ class AddProjectActivity : AppCompatActivity() {
                     textRoute.text.toString(),
                     startDate
                 )
+                val replacedValue = editProject.text.toString().replace("/","-")
                 db.collection("projects")
-                    .document(editProject.text.toString())
+                    .document(replacedValue)
                     .set(project)
                     .addOnSuccessListener {
                         Toast.makeText(this, "تم الإضافة بنجاح", Toast.LENGTH_SHORT).show()

@@ -19,9 +19,10 @@ class RentRateActivity : BaseActivity(), ICreateActivity {
     val rentRatesNames = mutableListOf<String>()
 
     override fun createNew(value: String) {
-        val rentRatesMap = mapOf("rentrate" to value)
+        val replacedValue = value.replace("/","-")
+        val rentRatesMap = mapOf("rentrate" to replacedValue)
         rentRateRef
-            .document(value).set(rentRatesMap)
+            .document(replacedValue).set(rentRatesMap)
             .addOnSuccessListener {
                 Toast.makeText(this, "تم الإضافة بنجاح", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {

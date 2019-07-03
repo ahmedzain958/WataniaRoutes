@@ -169,8 +169,9 @@ class EditProjectActivity : AppCompatActivity() {
                     startDate
                 )
                 var updated = false
+                val replacedValue = editProject.text.toString().replace("/","-")
                 db.collection("projects")
-                    .document(editProject.text.toString())
+                    .document(replacedValue)
                     .set(project)
                     .addOnSuccessListener {
                         if (editProject.text.toString().trim() != project.ProjectName) {
