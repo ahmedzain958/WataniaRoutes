@@ -218,9 +218,9 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"/>
 
-                <EditText
-                        android:id="@+id/editRentValue"
-                        android:hint="@string/RentValue"
+                <TextView
+                        android:id="@+id/textRentValue"
+                        android:hint="0"
                         android:background="@drawable/rounded_edittext"
                         android:gravity="center"
                         android:inputType="numberDecimal"

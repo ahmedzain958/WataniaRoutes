@@ -3,12 +3,14 @@ package com.zainco.wataniaroutes
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.zainco.wataniaroutes.SelectionActivity.Companion.SELECTION
-import kotlinx.android.synthetic.main.activity_add_project.*
+import kotlinx.android.synthetic.main.activity_edit_project.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -66,6 +68,8 @@ class EditProjectActivity : AppCompatActivity() {
                 )
             datePickerDialog.show()
         }
+
+
         textEndDate.setOnClickListener {
             val dateToListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 val selectedCalender = Calendar.getInstance()
@@ -84,6 +88,36 @@ class EditProjectActivity : AppCompatActivity() {
                 )
             datePickerDialog.show()
         }
+        editArea.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val x = 0
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                val x = 0
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                onAreaOrPriceChange()
+            }
+
+        })
+        editPrice.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val x = 0
+
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                val x = 0
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                onAreaOrPriceChange()
+            }
+
+        })
 
         button.setOnClickListener {
             if (editProject.text.toString().trim().isEmpty()) {
@@ -92,24 +126,15 @@ class EditProjectActivity : AppCompatActivity() {
                 Toast.makeText(this, "يرجي ادخال الطريق", Toast.LENGTH_SHORT).show()
             } else if (textInvestor.text.toString().trim().isEmpty()) {
                 Toast.makeText(this, "يرجي ادخال اسم المستثمر", Toast.LENGTH_SHORT).show()
-            } else if (textLocation.text.toString().trim().isEmpty()) {
-                Toast.makeText(this, "يرجي ادخال الموقع", Toast.LENGTH_SHORT).show()
-            } else if (textRentType.text.toString().trim().isEmpty()) {
-                Toast.makeText(this, "يرجي ادخال معدل ايجار", Toast.LENGTH_SHORT).show()
-            } else if (textRentType.text.toString().trim().isEmpty()) {
-                Toast.makeText(this, "يرجي ادخال معدل ايجار", Toast.LENGTH_SHORT).show()
-            } else if (textRentType.text.toString().trim().isEmpty()) {
-                Toast.makeText(this, "يرجي ادخال معدل ايجار", Toast.LENGTH_SHORT).show()
             } else if (textRentType.text.toString().trim().isEmpty()) {
                 Toast.makeText(this, "يرجي ادخال معدل ايجار", Toast.LENGTH_SHORT).show()
             } else {
                 val annualRaise: Double?
-                val area: String?
+                val area: Double?
                 val endDate: String
                 val notes: String
                 val period: String
                 val price: Int
-                val rentValue: Long
                 val startDate: String
 
                 if (editAnnualRaise.text.toString().trim().isEmpty())
@@ -118,9 +143,9 @@ class EditProjectActivity : AppCompatActivity() {
                     annualRaise = editAnnualRaise.text.toString().toDouble()
 
                 if (editArea.text.toString().trim().isEmpty())
-                    area = ""
+                    area = 0.0
                 else
-                    area = editArea.text.toString()
+                    area = editArea.text.toString().toDouble()
 
                 if (textEndDate.text.toString().trim().isEmpty())
                     endDate = ""
@@ -146,13 +171,6 @@ class EditProjectActivity : AppCompatActivity() {
                     price = 0
                 else
                     price = editPrice.text.toString().toInt()
-
-                if (editRentValue.text.toString().trim().isEmpty())
-                    rentValue = 0
-                else
-                    rentValue = editRentValue.text.toString().toLong()
-
-
                 val project = Project(
                     annualRaise,
                     area,
@@ -164,7 +182,7 @@ class EditProjectActivity : AppCompatActivity() {
                     price,
                     editProject.text.toString(),
                     textRentType.text.toString(),
-                    rentValue,
+                    area * price,
                     textRoute.text.toString(),
                     startDate
                 )
@@ -195,6 +213,12 @@ class EditProjectActivity : AppCompatActivity() {
         }
     }
 
+    fun onAreaOrPriceChange() {
+        val area = if (editArea.text.toString().isEmpty()) 0.0 else editArea.text.toString().toDouble()
+        val price = if (editPrice.text.toString().isEmpty()) 0.0 else editPrice.text.toString().toDouble()
+        val rentValue = area * price
+        textRentValue.text = rentValue.toString()
+    }
     private fun loadViews() {
         editAnnualRaise.setText(project.AnnualRaise.toString())
         editArea.setText(project.Area.toString())
@@ -203,7 +227,7 @@ class EditProjectActivity : AppCompatActivity() {
         editNotes.setText(project.Notes.toString())
         editPeriod.setText(project.Period.toString())
         editPrice.setText(project.Price.toString())
-        editRentValue.setText(project.RentValue.toString())
+        textRentValue.setText(project.RentValue.toString())
         textRoute.setText(project.Route)
         textInvestor.setText(project.Investor)
         textLocation.setText(project.Location)

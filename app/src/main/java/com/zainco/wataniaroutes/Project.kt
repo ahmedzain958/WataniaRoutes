@@ -4,7 +4,7 @@ import java.io.Serializable
 
 data class Project(
     var AnnualRaise: Double? = 0.0,
-    var Area: String? = "",
+    var Area: Double? = 0.0,
     var EndDate: String? = "",
     var Investor: String = "",
     var Location: String = "",
@@ -13,7 +13,7 @@ data class Project(
     var Price: Int? = 0,
     var ProjectName: String = "",
     var RentRate: String = "",
-    var RentValue: Long? = 0,
+    var RentValue: Double? = 0.0,
     var Route: String = "",
     var StartDate: String? = ""
 ):Serializable
