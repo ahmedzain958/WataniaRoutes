@@ -167,5 +167,34 @@
                       android:layout_height="wrap_content"
                       android:text="@string/add_rentrate"/>
         </LinearLayout>
+ </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+            android:layout_margin="16dp"
+            android:elevation="@dimen/cardview_default_elevation"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/colorGreen"
+            android:id="@+id/cardAddCurrency"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardAddRentRate"
+            android:layout_width="0dp"
+            android:layout_height="80dp">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent">
+            <ImageView
+                    android:layout_width="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_chart_white"
+            />
+            <TextView android:layout_width="match_parent"
+                      style="@style/Title1Style"
+                      android:textColor="@color/white"
+                      android:layout_gravity="center"
+                      android:layout_marginStart="16dp"
+                      android:gravity="center"
+                      android:layout_height="wrap_content"
+                      android:text="@string/add_currency"/>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

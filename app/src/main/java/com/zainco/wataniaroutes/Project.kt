@@ -10,10 +10,12 @@ data class Project(
     var Location: String = "",
     var Notes: String? = "",
     var Period: String? = "",
-    var Price: Int? = 0,
+    var Price: Double? = 0.0,
     var ProjectName: String = "",
     var RentRate: String = "",
     var RentValue: Double? = 0.0,
     var Route: String = "",
-    var StartDate: String? = ""
+    var StartDate: String? = "",
+    var currency: String? = "جنيه"
+
 ):Serializable

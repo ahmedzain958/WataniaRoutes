@@ -32,6 +32,10 @@ class AddActivity : BaseActivity() {
             val intent = Intent(this, RentRateActivity::class.java)
             startActivity(intent)
         }
+        cardAddCurrency.setOnClickListener {
+            val intent = Intent(this, CurrencyActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

@@ -1,5 +1,6 @@
 package com.zainco.wataniaroutes
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
@@ -8,9 +9,24 @@ import android.text.TextWatcher
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.zainco.wataniaroutes.SelectionActivity.Companion.SELECTION
-import kotlinx.android.synthetic.main.activity_edit_project.*
+import kotlinx.android.synthetic.main.activity_add_project.*
+import kotlinx.android.synthetic.main.activity_edit_project.button
+import kotlinx.android.synthetic.main.activity_edit_project.editAnnualRaise
+import kotlinx.android.synthetic.main.activity_edit_project.editArea
+import kotlinx.android.synthetic.main.activity_edit_project.editNotes
+import kotlinx.android.synthetic.main.activity_edit_project.editPeriod
+import kotlinx.android.synthetic.main.activity_edit_project.editPrice
+import kotlinx.android.synthetic.main.activity_edit_project.editProject
+import kotlinx.android.synthetic.main.activity_edit_project.textEndDate
+import kotlinx.android.synthetic.main.activity_edit_project.textInvestor
+import kotlinx.android.synthetic.main.activity_edit_project.textLocation
+import kotlinx.android.synthetic.main.activity_edit_project.textRentType
+import kotlinx.android.synthetic.main.activity_edit_project.textRentValue
+import kotlinx.android.synthetic.main.activity_edit_project.textRoute
+import kotlinx.android.synthetic.main.activity_edit_project.textStartDate
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,6 +41,7 @@ class EditProjectActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     lateinit var project: Project
     private val projectRef: CollectionReference = db.collection("projects")
+    private val currencyRef: CollectionReference = db.collection("currency")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_project)
@@ -99,7 +116,7 @@ class EditProjectActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                onAreaOrPriceChange()
+                onAreaOrPriceChange(if (!editPrice.text.toString().trim().isEmpty()) editPrice.text.toString().toDouble() else 0.0)
             }
 
         })
@@ -114,7 +131,7 @@ class EditProjectActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                onAreaOrPriceChange()
+                onAreaOrPriceChange(if (!s.toString().trim().isEmpty()) s.toString().toDouble() else 0.0)
             }
 
         })
@@ -134,8 +151,9 @@ class EditProjectActivity : AppCompatActivity() {
                 val endDate: String
                 val notes: String
                 val period: String
-                val price: Int
+                var price: Double = 0.0
                 val startDate: String
+                var project: Project
 
                 if (editAnnualRaise.text.toString().trim().isEmpty())
                     annualRaise = 0.0
@@ -167,58 +185,179 @@ class EditProjectActivity : AppCompatActivity() {
                 else
                     period = editPeriod.text.toString()
 
-                if (editPrice.text.toString().trim().isEmpty())
-                    price = 0
-                else
-                    price = editPrice.text.toString().toInt()
-                val project = Project(
-                    annualRaise,
-                    area,
-                    endDate,
-                    textInvestor.text.toString(),
-                    textLocation.text.toString(),
-                    notes,
-                    period,
-                    price,
-                    editProject.text.toString(),
-                    textRentType.text.toString(),
-                    area * price,
-                    textRoute.text.toString(),
-                    startDate
-                )
-                var updated = false
-                val replacedValue = editProject.text.toString().replace("/","-")
-                db.collection("projects")
-                    .document(replacedValue)
-                    .set(project)
-                    .addOnSuccessListener {
-                        if (editProject.text.toString().trim() != project.ProjectName) {
-                            updated = true
-                        }else{
-                            updated = false
-                            Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
-                            finish()
+                if (editPrice.text.toString().trim().isEmpty()) {
+                    price = 0.0
+                } else {
+                    var foreign = 1.0
+                    val currency = currency.text.toString()
+                    if (currency == "جنيه") {
+                        price = foreign * editPrice.text.toString().toDouble()
+                        val rentValue = area * price
+                        textRentValue.text = String.format("%.2f", rentValue)
+                        project = Project(
+                            annualRaise,
+                            area,
+                            endDate,
+                            textInvestor.text.toString(),
+                            textLocation.text.toString(),
+                            notes,
+                            period,
+                            price/foreign,
+                            editProject.text.toString(),
+                            textRentType.text.toString(),
+                            area * price,
+                            textRoute.text.toString(),
+                            startDate,
+                            currency
+                        )
+                        var updated = false
+                        val replacedValue = editProject.text.toString().replace("/","-")
+                        db.collection("projects")
+                            .document(replacedValue)
+                            .set(project)
+                            .addOnSuccessListener {
+                                if (editProject.text.toString().trim() != project.ProjectName) {
+                                    updated = true
+                                }else{
+                                    updated = false
+                                    Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
+                                    finish()
+                                }
+                            }.addOnFailureListener {
+                                Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()
+                            }
+                        if (updated) {
+                            val projectDocumentRef = projectRef.document(project.ProjectName)
+                            projectDocumentRef.delete().addOnCompleteListener {
+                                Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
+                                finish()
+                            }
                         }
-                    }.addOnFailureListener {
-                        Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()
+                    } else {
+                        currencyRef.document(currency).get()
+                            .addOnSuccessListener { documentSnapshot: DocumentSnapshot ->
+                                if (documentSnapshot.exists()) {
+                                    foreign = documentSnapshot.getString("egyptianValue")!!.toDouble()
+                                    price = foreign * editPrice.text.toString().toDouble()
+                                    val rentValue = area * price
+                                    textRentValue.text = String.format("%.2f", rentValue)
+                                    project = Project(
+                                        annualRaise,
+                                        area,
+                                        endDate,
+                                        textInvestor.text.toString(),
+                                        textLocation.text.toString(),
+                                        notes,
+                                        period,
+                                        price/foreign,
+                                        editProject.text.toString(),
+                                        textRentType.text.toString(),
+                                        area * price,
+                                        textRoute.text.toString(),
+                                        startDate,
+                                        currency
+                                    )
+                                    var updated = false
+                                    val replacedValue = editProject.text.toString().replace("/","-")
+                                    db.collection("projects")
+                                        .document(replacedValue)
+                                        .set(project)
+                                        .addOnSuccessListener {
+                                            if (editProject.text.toString().trim() != project.ProjectName) {
+                                                updated = true
+                                            }else{
+                                                updated = false
+                                                Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
+                                                finish()
+                                            }
+                                        }.addOnFailureListener {
+                                            Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()
+                                        }
+                                    if (updated) {
+                                        val projectDocumentRef = projectRef.document(project.ProjectName)
+                                        projectDocumentRef.delete().addOnCompleteListener {
+                                            Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
+                                            finish()
+                                        }
+                                    }
+                                }
+                            }.addOnFailureListener {
+                                Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()
+                            }
                     }
-                if (updated) {
-                    val projectDocumentRef = projectRef.document(project.ProjectName)
-                    projectDocumentRef.delete().addOnCompleteListener {
-                        Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
-                        finish()
+                }
+
+
+            }
+        }
+        btnCurrency.setOnClickListener {
+            showCurrenciesDialog()
+        }
+    }
+
+    private fun showCurrenciesDialog() {
+        val builder = AlertDialog.Builder(this@EditProjectActivity)
+        builder.setTitle("اختر العملة")
+        currencyRef.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+            if (firebaseFirestoreException != null) {
+                return@addSnapshotListener
+            }
+            if (querySnapshot == null) {
+                Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()
+            } else {
+                val currencyNames = arrayListOf<String>()
+                if (querySnapshot.size() > 0) {
+                    currencyNames.clear()
+                    querySnapshot.map {
+                        currencyNames.add(it.id)
                     }
+                    val currencies = currencyNames.toTypedArray()
+                    builder.setSingleChoiceItems(
+                        currencies,
+                        -1
+                    ) { dialogInterface, p1 ->
+                        currency.text = currencies[p1]
+                        dialogInterface.dismiss()
+                        onAreaOrPriceChange(if (!editPrice.text.toString().trim().isEmpty()) editPrice.text.toString().toDouble() else 0.0)
+                    }
+
+                    val dialog = builder.create()
+                    dialog.show()
+                } else {
+                    Toast.makeText(this, "لا يوجد عملات", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        }
+    }
+
+    fun onAreaOrPriceChange(priceValue: Double = 0.0) {
+        val area = if (editArea.text.toString().isEmpty()) 0.0 else editArea.text.toString().toDouble()
+        val currency = currency.text.toString()
+        var foreign = 1.0
+        var price = 0.0
+        if (editPrice.text.toString().isEmpty()) {
+            price = 0.0
+        } else {
+            if (currency == "جنيه") {
+                price = foreign * priceValue
+                val rentValue = area * price
+                textRentValue.text = String.format("%.2f", rentValue)
+            } else {
+                currencyRef.document(currency).get().addOnSuccessListener { documentSnapshot: DocumentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        foreign = documentSnapshot.getString("egyptianValue")!!.toDouble()
+                        price = foreign * priceValue
+                        val rentValue = area * price
+                        textRentValue.text = String.format("%.2f", rentValue)
+                    }
+                }.addOnFailureListener {
+                    Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 
-    fun onAreaOrPriceChange() {
-        val area = if (editArea.text.toString().isEmpty()) 0.0 else editArea.text.toString().toDouble()
-        val price = if (editPrice.text.toString().isEmpty()) 0.0 else editPrice.text.toString().toDouble()
-        val rentValue = area * price
-        textRentValue.text = rentValue.toString()
-    }
     private fun loadViews() {
         editAnnualRaise.setText(project.AnnualRaise.toString())
         editArea.setText(project.Area.toString())
@@ -226,13 +365,14 @@ class EditProjectActivity : AppCompatActivity() {
         textStartDate.setText(project.StartDate.toString())
         editNotes.setText(project.Notes.toString())
         editPeriod.setText(project.Period.toString())
-        editPrice.setText(project.Price.toString())
-        textRentValue.setText(project.RentValue.toString())
-        textRoute.setText(project.Route)
-        textInvestor.setText(project.Investor)
-        textLocation.setText(project.Location)
-        textRentType.setText(project.RentRate)
+        editPrice.run { setText(project.Price.toString()) }
+        textRentValue.text = project.RentValue.toString()
+        textRoute.text = project.Route
+        textInvestor.text = project.Investor
+        textLocation.text = project.Location
+        textRentType.text = project.RentRate
         editProject.setText(project.ProjectName)
+        currency.text = project.currency
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
