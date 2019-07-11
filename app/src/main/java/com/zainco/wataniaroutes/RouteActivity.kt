@@ -102,8 +102,8 @@ class RouteActivity : BaseActivity(), ICreateActivity {
     private fun fillRoutesList(routesNames: MutableList<String>) {
         recyclerViewRoutes.layoutManager = LinearLayoutManager(this)
         recyclerViewRoutes.setHasFixedSize(true)
-        recyclerViewRoutes.adapter = ValuesAdapter(R.string.route, routesNames, object : ValuesAdapter.OnValueClicked {
-            override fun setOnValueClicked(value: String) {
+        recyclerViewRoutes.adapter = ValuesAdapter( routesNames, object : ValuesAdapter.OnRecycleClicked {
+            override fun setOnRecycleClicked(value: String) {
                 generateMessageAlert(
                     getString(R.string.delete_route) + " " + value,
                     getString(R.string.delete),
@@ -121,7 +121,13 @@ class RouteActivity : BaseActivity(), ICreateActivity {
                     true
                 )
             }
-        })
+        },
+            object : ValuesAdapter.OnItemClicked {
+                override fun setOnItemClicked(value: String) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+            })
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

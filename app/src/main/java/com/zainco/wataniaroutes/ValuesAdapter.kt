@@ -4,18 +4,24 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.values_list_item.view.*
 
 class ValuesAdapter(
-    val titleId: Int,
-    internal var values: List<String>, val onValueClicked: OnValueClicked
+    private var values: List<String>,
+    private val onRecycleClicked: OnRecycleClicked,
+    val onItemClicked: OnItemClicked
 ) : RecyclerView.Adapter<ValuesAdapter.ValuesHolder>() {
     lateinit var context: Context
 
-    interface OnValueClicked {
-        fun setOnValueClicked(value: String)
+    interface OnRecycleClicked {
+        fun setOnRecycleClicked(value: String)
+    }
+
+    interface OnItemClicked {
+        fun setOnItemClicked(value: String)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ValuesHolder {
@@ -34,15 +40,17 @@ class ValuesAdapter(
         val value: String = values.get(holder.adapterPosition)
         with(holder) {
             textViewValue.text = value
-            textViewTitle.text = context.getString(titleId)
+            this.delete.setOnClickListener {
+                onRecycleClicked.setOnRecycleClicked(value)
+            }
             this.itemView.setOnClickListener {
-                onValueClicked.setOnValueClicked(value)
+                onRecycleClicked.setOnRecycleClicked(value)
             }
         }
     }
 
     inner class ValuesHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textViewValue: TextView = view.textViewValue
-        val textViewTitle: TextView = view.textViewTitle
+        val delete: ImageView = view.delete
     }
 }

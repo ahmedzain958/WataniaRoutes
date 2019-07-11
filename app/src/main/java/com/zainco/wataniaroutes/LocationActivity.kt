@@ -98,8 +98,8 @@ class LocationActivity : BaseActivity(), ICreateActivity {
     private fun fillLocationsList(locationsNames: MutableList<String>) {
         recyclerViewLocations.layoutManager = LinearLayoutManager(this)
         recyclerViewLocations.setHasFixedSize(true)
-        recyclerViewLocations.adapter = ValuesAdapter(R.string.location,locationsNames, object : ValuesAdapter.OnValueClicked {
-            override fun setOnValueClicked(value: String) {
+        recyclerViewLocations.adapter = ValuesAdapter(locationsNames, object : ValuesAdapter.OnRecycleClicked {
+            override fun setOnRecycleClicked(value: String) {
                 generateMessageAlert(
                     getString(R.string.delete_location)+" " + value,
                     getString(R.string.delete),
@@ -117,7 +117,13 @@ class LocationActivity : BaseActivity(), ICreateActivity {
                     true
                 )
             }
-        })
+        },
+            object : ValuesAdapter.OnItemClicked {
+                override fun setOnItemClicked(value: String) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+            })
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

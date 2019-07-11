@@ -99,8 +99,8 @@ class RentRateActivity : BaseActivity(), ICreateActivity {
     private fun fillRentratesList(rentRatesNames: MutableList<String>) {
         recyclerViewRentRates.layoutManager = LinearLayoutManager(this)
         recyclerViewRentRates.setHasFixedSize(true)
-        recyclerViewRentRates.adapter = ValuesAdapter(R.string.rentrate,rentRatesNames, object : ValuesAdapter.OnValueClicked {
-            override fun setOnValueClicked(value: String) {
+        recyclerViewRentRates.adapter = ValuesAdapter(rentRatesNames, object : ValuesAdapter.OnRecycleClicked {
+            override fun setOnRecycleClicked(value: String) {
                 generateMessageAlert(
                     getString(R.string.delete_rentrate)+" " + value,
                     getString(R.string.delete),
@@ -118,7 +118,13 @@ class RentRateActivity : BaseActivity(), ICreateActivity {
                     true
                 )
             }
-        })
+        },
+            object : ValuesAdapter.OnItemClicked {
+                override fun setOnItemClicked(value: String) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+            })
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

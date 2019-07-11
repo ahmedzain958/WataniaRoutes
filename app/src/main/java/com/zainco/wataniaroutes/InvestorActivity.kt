@@ -99,8 +99,8 @@ class InvestorActivity : BaseActivity(), ICreateActivity {
     private fun fillInvestorsList(InvestorsNames: MutableList<String>) {
         recyclerViewInvestors.layoutManager = LinearLayoutManager(this)
         recyclerViewInvestors.setHasFixedSize(true)
-        recyclerViewInvestors.adapter = ValuesAdapter(R.string.investor,InvestorsNames, object : ValuesAdapter.OnValueClicked {
-            override fun setOnValueClicked(value: String) {
+        recyclerViewInvestors.adapter = ValuesAdapter(InvestorsNames, object : ValuesAdapter.OnRecycleClicked {
+            override fun setOnRecycleClicked(value: String) {
                 generateMessageAlert(
                     getString(R.string.delete_investor)+" " + value,
                     getString(R.string.delete),
@@ -118,7 +118,13 @@ class InvestorActivity : BaseActivity(), ICreateActivity {
                     true
                 )
             }
-        })
+        },
+            object : ValuesAdapter.OnItemClicked {
+                override fun setOnItemClicked(value: String) {
+                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                }
+
+            })
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

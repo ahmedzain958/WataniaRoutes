@@ -106,8 +106,8 @@ class CurrencyActivity : BaseActivity(), ICreateCurrencyActivity {
         recyclerViewCurrency.layoutManager = LinearLayoutManager(this)
         recyclerViewCurrency.setHasFixedSize(true)
         recyclerViewCurrency.adapter =
-            ValuesAdapter(R.string.currency, currencies, object : ValuesAdapter.OnValueClicked {
-                override fun setOnValueClicked(value: String) {
+            ValuesAdapter( currencies, object : ValuesAdapter.OnRecycleClicked {
+                override fun setOnRecycleClicked(value: String) {
                     generateMessageAlert(
                         getString(R.string.delete_currency) + " " + value,
                         getString(R.string.delete),
@@ -126,7 +126,13 @@ class CurrencyActivity : BaseActivity(), ICreateCurrencyActivity {
                         true
                     )
                 }
-            })
+            },
+                object : ValuesAdapter.OnItemClicked {
+                    override fun setOnItemClicked(value: String) {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
+
+                })
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
