@@ -280,6 +280,9 @@ class EditProjectActivity : AppCompatActivity() {
                                             finish()
                                         }
                                     }
+                                } else {
+                                    Toast.makeText(this, "يرجي تعديل العملة", Toast.LENGTH_SHORT).show()
+                                    finish()
                                 }
                             }.addOnFailureListener {
                                 Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()

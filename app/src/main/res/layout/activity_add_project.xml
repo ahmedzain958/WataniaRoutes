@@ -337,7 +337,7 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp">
 
-                  <TextView
+                <TextView
                         android:id="@+id/textEndDate"
                         android:hint="@string/end_date"
                         android:gravity="center"
