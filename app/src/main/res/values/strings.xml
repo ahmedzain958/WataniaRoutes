@@ -43,6 +43,11 @@
     <string name="currency">العملة</string>
     <string name="delete_currency">هل تريد حذف العملة؟</string>
     <string name="egyptian_value">القيمة بالمصري</string>
+    <string name="edit_currency">تعديل العملة</string>
+    <string name="edit_investor">تعديل مستثمر</string>
+    <string name="edit_location">تعديل الموقع</string>
+    <string name="edit_rent_rate">تعديل معدل الايجار</string>
+    <string name="edit_route">تعديل الطريق</string>
     <string-array name="rent_type">
         <item>سنوي</item>
         <item>شهري</item>

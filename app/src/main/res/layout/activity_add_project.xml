@@ -22,17 +22,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_width="0dp"
                     android:layout_height="40dp">
-
-                <TextView
-                        android:text="@string/project_name"
-                        android:gravity="center"
-                        android:background="@drawable/rounded_edittext"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"/>
-
                 <EditText
                         android:id="@+id/editProject"
                         android:hint="@string/project_name"
@@ -43,6 +32,16 @@
                         android:layout_marginEnd="10dp"
                         android:layout_width="0dp"
                         android:layout_weight="2.5"
+                        android:layout_height="match_parent"/>
+                <TextView
+                        android:text="@string/project_name"
+                        android:gravity="center"
+                        android:layout_marginEnd="6dp"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout
@@ -56,14 +55,6 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp">
 
-                <TextView
-                        android:text="@string/route"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                        android:background="@drawable/rounded_edittext"
-                        android:textColor="@color/black"                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"/>
 
                 <TextView
                         android:id="@+id/textRoute"
@@ -74,6 +65,15 @@
                         android:layout_marginEnd="10dp"
                         android:layout_width="0dp"
                         android:layout_weight="2.5"
+                        android:layout_height="match_parent"/>
+                <TextView
+                        android:text="@string/route"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="6dp"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black" android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout
@@ -87,14 +87,6 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp">
 
-                <TextView
-                        android:text="@string/investor"
-                        android:gravity="center"
-                        android:background="@drawable/rounded_edittext"
-                        android:textColor="@color/black"                        android:textStyle="bold"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"/>
 
                 <TextView
                         android:id="@+id/textInvestor"
@@ -105,6 +97,15 @@
                         android:background="@drawable/rounded_edittext"
                         android:layout_width="0dp"
                         android:layout_weight="2.5"
+                        android:layout_height="match_parent"/>
+                <TextView
+                        android:text="@string/investor"
+                        android:gravity="center"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black" android:textStyle="bold"
+                        android:layout_marginEnd="6dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout
@@ -119,15 +120,6 @@
                     android:layout_height="40dp">
 
                 <TextView
-                        android:text="@string/location"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                        android:background="@drawable/rounded_edittext"
-                        android:textColor="@color/black"                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"/>
-
-                <TextView
                         android:id="@+id/textLocation"
                         android:hint="@string/location"
                         android:background="@drawable/rounded_edittext"
@@ -138,6 +130,16 @@
                         android:layout_width="0dp"
                         android:layout_weight="2.5"
                         android:layout_height="match_parent"/>
+                <TextView
+                        android:text="@string/location"
+                        android:gravity="center"
+                        android:layout_marginEnd="6dp"
+                        android:textStyle="bold"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black" android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
@@ -149,15 +151,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_width="0dp"
                     android:layout_height="40dp">
-
-                <TextView
-                        android:text="@string/Area"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                        android:background="@drawable/rounded_edittext"
-                        android:textColor="@color/black"                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"/>
 
                 <EditText
                         android:id="@+id/editArea"
@@ -171,6 +164,16 @@
                         android:layout_width="0dp"
                         android:layout_weight="2.5"
                         android:layout_height="match_parent"/>
+                <TextView
+                        android:text="@string/Area"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="6dp"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black" android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
@@ -183,26 +186,6 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp">
 
-                <TextView
-                        android:text="@string/price"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                        android:background="@drawable/rounded_edittext"
-                        android:textColor="@color/black"                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"/>
-
-                <EditText
-                        android:id="@+id/editPrice"
-                        android:hint="@string/price"
-                        android:gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:inputType="numberDecimal"
-                        android:layout_marginEnd="4dp"
-                        android:background="@drawable/rounded_edittext"
-                        android:layout_width="0dp"
-                        android:layout_weight="1.3"
-                        android:layout_height="match_parent"/>
                 <Button
                         android:id="@+id/btnCurrency"
                         android:text="اختر العملة"
@@ -221,6 +204,27 @@
                         android:textColor="@color/colorRed" android:layout_width="0dp"
                         android:layout_weight="0.4"
                         android:layout_height="match_parent"/>
+
+                <TextView
+                        android:text="@string/price"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black" android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
+                <EditText
+                        android:id="@+id/editPrice"
+                        android:hint="@string/price"
+                        android:gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:inputType="numberDecimal"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/rounded_edittext"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.3"
+                        android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
@@ -232,17 +236,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_width="0dp"
                     android:layout_height="40dp">
-
-                <TextView
-                        android:text="@string/RentValue"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                        android:background="@drawable/rounded_edittext"
-                        android:textColor="@color/black"                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"/>
-
-                <TextView
+   <TextView
                         android:id="@+id/textRentValue"
                         android:hint="0"
                         android:background="@drawable/rounded_edittext"
@@ -253,6 +247,17 @@
                         android:layout_width="0dp"
                         android:layout_weight="2.5"
                         android:layout_height="match_parent"/>
+
+                <TextView
+                        android:text="@string/RentValue"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:background="@drawable/rounded_edittext"
+                        android:layout_marginEnd="6dp"
+                        android:textColor="@color/black"                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
@@ -265,17 +270,7 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp">
 
-                <TextView
-                        android:text="@string/RentType"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                        android:background="@drawable/rounded_edittext"
-                        android:textColor="@color/black"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"/>
-
-                <TextView
+                 <TextView
                         android:id="@+id/textRentType"
                         android:textAlignment="center"
                         android:hint="@string/rentrate"
@@ -288,6 +283,17 @@
                         android:layout_height="match_parent"
 
                 />
+                <TextView
+                        android:text="@string/RentType"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:background="@drawable/rounded_edittext"
+                        android:layout_marginEnd="6dp"
+                        android:textColor="@color/black"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
@@ -300,16 +306,7 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp">
 
-                <TextView
-                        android:text="@string/start_date"
-                        android:gravity="center"
-                        android:background="@drawable/rounded_edittext"
-                        android:textColor="@color/black"                        android:textStyle="bold"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"/>
-
-                <TextView
+                 <TextView
                         android:id="@+id/textStartDate"
                         android:hint="@string/start_date"
                         android:gravity="center"
@@ -319,6 +316,15 @@
                         android:layout_width="0dp"
                         android:layout_weight="2.5"
                         android:layout_height="match_parent"/>
+                <TextView
+                        android:text="@string/start_date"
+                        android:gravity="center"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black"                        android:textStyle="bold"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
@@ -331,16 +337,7 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp">
 
-                <TextView
-                        android:text="@string/end_date"
-                        android:gravity="center"
-                        android:background="@drawable/rounded_edittext"
-                        android:textColor="@color/black"                        android:textStyle="bold"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"/>
-
-                <TextView
+                  <TextView
                         android:id="@+id/textEndDate"
                         android:hint="@string/end_date"
                         android:gravity="center"
@@ -350,6 +347,15 @@
                         android:layout_width="0dp"
                         android:layout_weight="2.5"
                         android:layout_height="match_parent"/>
+                <TextView
+                        android:text="@string/end_date"
+                        android:gravity="center"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black"                        android:textStyle="bold"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
+
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
@@ -362,14 +368,6 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp">
 
-                <TextView
-                        android:text="@string/period"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                        android:background="@drawable/rounded_edittext"
-                        android:textColor="@color/black"                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"/>
 
                 <EditText
                         android:id="@+id/editPeriod"
@@ -380,6 +378,14 @@
                         android:background="@drawable/rounded_edittext"
                         android:layout_width="0dp"
                         android:layout_weight="2.5"
+                        android:layout_height="match_parent"/>
+                <TextView
+                        android:text="@string/period"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black"                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout
@@ -392,15 +398,16 @@
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_width="0dp"
                     android:layout_height="40dp">
-
                 <TextView
-                        android:text="@string/annual_raise"
-                        android:gravity="center"
+                        android:textSize="16sp"
+
+                        android:layout_gravity="center"
                         android:textStyle="bold"
-                        android:background="@drawable/rounded_edittext"
-                        android:textColor="@color/black"                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"/>
+                        android:gravity="center"
+                        android:layout_height="match_parent"
+                        android:layout_width="10dp"
+                        android:text="%"/>
+
 
                 <EditText
                         android:id="@+id/editAnnualRaise"
@@ -414,14 +421,13 @@
                         android:layout_weight="2.4"
                         android:layout_height="match_parent"/>
                 <TextView
-                        android:textSize="16sp"
-
-                        android:layout_gravity="center"
-                        android:textStyle="bold"
+                        android:text="@string/annual_raise"
                         android:gravity="center"
-                        android:layout_height="match_parent"
-                        android:layout_width="10dp"
-                        android:text="%"/>
+                        android:textStyle="bold"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black"                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
@@ -434,6 +440,17 @@
                     android:layout_width="0dp"
                     android:layout_height="40dp">
 
+                 <EditText
+                        android:id="@+id/editNotes"
+                        android:hint="@string/notes"
+                        android:gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/rounded_edittext"
+                        android:lines="5"
+                        android:layout_width="0dp"
+                        android:layout_weight="2.5"
+                        android:layout_height="match_parent"/>
                 <TextView
                         android:text="@string/notes"
                         android:gravity="center"
@@ -443,19 +460,6 @@
                         android:layout_weight="1"
                         android:layout_height="match_parent"/>
 
-                <EditText
-                        android:id="@+id/editNotes"
-                        android:hint="@string/notes"
-                        android:gravity="center"
-                        android:minLines="3"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:background="@drawable/rounded_edittext"
-                        android:lines="2"
-                        android:maxLength="150"
-                        android:layout_width="0dp"
-                        android:layout_weight="2.5"
-                        android:layout_height="match_parent"/>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

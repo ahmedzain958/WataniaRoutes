@@ -16,16 +16,16 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.cardview.widget.CardView
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
             android:elevation="@dimen/cardview_default_elevation"
             app:cardCornerRadius="16dp"
-            app:cardBackgroundColor="@color/colorGreen"
+            app:cardBackgroundColor="@color/colorDarkGrey"
             android:id="@+id/cardAddProject"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/addToolbar"
             android:layout_width="0dp"
-            android:layout_height="80dp">
+            android:layout_height="50dp">
 
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent">
@@ -49,16 +49,16 @@
 
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
             android:elevation="@dimen/cardview_default_elevation"
             app:cardCornerRadius="16dp"
-            app:cardBackgroundColor="@color/colorGreen"
+            app:cardBackgroundColor="@color/colorDarkGrey"
             android:id="@+id/cardAddRoute"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardAddProject"
             android:layout_width="0dp"
-            android:layout_height="80dp">
+            android:layout_height="50dp">
 
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent">
@@ -82,16 +82,16 @@
 
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
             android:elevation="@dimen/cardview_default_elevation"
             app:cardCornerRadius="16dp"
-            app:cardBackgroundColor="@color/colorGreen"
+            app:cardBackgroundColor="@color/colorDarkGrey"
             android:id="@+id/cardAddLocation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardAddRoute"
             android:layout_width="0dp"
-            android:layout_height="80dp">
+            android:layout_height="50dp">
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent">
             <ImageView
@@ -111,16 +111,16 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>  
     <androidx.cardview.widget.CardView
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
             android:elevation="@dimen/cardview_default_elevation"
             app:cardCornerRadius="16dp"
-            app:cardBackgroundColor="@color/colorGreen"
+            app:cardBackgroundColor="@color/colorDarkGrey"
             android:id="@+id/cardAddInvestor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardAddLocation"
             android:layout_width="0dp"
-            android:layout_height="80dp">
+            android:layout_height="50dp">
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent">
             <ImageView
@@ -140,16 +140,16 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
  <androidx.cardview.widget.CardView
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
             android:elevation="@dimen/cardview_default_elevation"
             app:cardCornerRadius="16dp"
-            app:cardBackgroundColor="@color/colorGreen"
+            app:cardBackgroundColor="@color/colorDarkGrey"
             android:id="@+id/cardAddRentRate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardAddInvestor"
             android:layout_width="0dp"
-            android:layout_height="80dp">
+            android:layout_height="50dp">
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent">
             <ImageView
@@ -169,16 +169,16 @@
         </LinearLayout>
  </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
             android:elevation="@dimen/cardview_default_elevation"
             app:cardCornerRadius="16dp"
-            app:cardBackgroundColor="@color/colorGreen"
+            app:cardBackgroundColor="@color/colorDarkGrey"
             android:id="@+id/cardAddCurrency"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardAddRentRate"
             android:layout_width="0dp"
-            android:layout_height="80dp">
+            android:layout_height="50dp">
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="match_parent">
             <ImageView

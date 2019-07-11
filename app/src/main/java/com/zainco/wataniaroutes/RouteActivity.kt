@@ -9,11 +9,27 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import kotlinx.android.synthetic.main.activity_add_route.*
 import kotlinx.android.synthetic.main.uctd_toolbar.*
 
 
-class RouteActivity : BaseActivity(), ICreateActivity {
+class RouteActivity : BaseActivity(), ICreateActivity ,IEditActivity {
+    var selectedItem=""
+    override fun edit(value: String) {
+        val replacedValue = value.replace("/","-")
+        val investorMap = mapOf("route" to replacedValue)
+        routeRef
+            .document(replacedValue).set(investorMap, SetOptions.merge())
+            .addOnSuccessListener {
+            }.addOnFailureListener {
+                Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()
+            }
+        val routeDocumentRef = routeRef.document(selectedItem)
+        routeDocumentRef.delete().addOnCompleteListener {
+            Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
+        }
+    }
     private val db = FirebaseFirestore.getInstance()
     private val routeRef: CollectionReference = db.collection("Routes")
     val routesNames = mutableListOf<String>()
@@ -124,7 +140,13 @@ class RouteActivity : BaseActivity(), ICreateActivity {
         },
             object : ValuesAdapter.OnItemClicked {
                 override fun setOnItemClicked(value: String) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    selectedItem = value
+                    val dialog =
+                        NewDialog(R.string.route,R.string.edit_route,value)
+                    dialog.show(
+                        supportFragmentManager,
+                        getString(R.string.edit_route)
+                    )
                 }
 
             })

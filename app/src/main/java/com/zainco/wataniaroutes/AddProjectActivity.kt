@@ -219,7 +219,7 @@ class AddProjectActivity : AppCompatActivity() {
                                     updated = true
                                 }else{
                                     updated = false
-                                    Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, "تم الاضافة بنجاح", Toast.LENGTH_SHORT).show()
                                     finish()
                                 }
                             }.addOnFailureListener {
@@ -228,7 +228,7 @@ class AddProjectActivity : AppCompatActivity() {
                         if (updated) {
                             val projectDocumentRef = projectRef.document(project.ProjectName)
                             projectDocumentRef.delete().addOnCompleteListener {
-                                Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "تم الاضافة بنجاح", Toast.LENGTH_SHORT).show()
                                 finish()
                             }
                         }
@@ -266,7 +266,7 @@ class AddProjectActivity : AppCompatActivity() {
                                                 updated = true
                                             }else{
                                                 updated = false
-                                                Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
+                                                Toast.makeText(this, "تم الاضافة بنجاح", Toast.LENGTH_SHORT).show()
                                                 finish()
                                             }
                                         }.addOnFailureListener {
@@ -275,7 +275,7 @@ class AddProjectActivity : AppCompatActivity() {
                                     if (updated) {
                                         val projectDocumentRef = projectRef.document(project.ProjectName)
                                         projectDocumentRef.delete().addOnCompleteListener {
-                                            Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(this, "تم الاضافة بنجاح", Toast.LENGTH_SHORT).show()
                                             finish()
                                         }
                                     }

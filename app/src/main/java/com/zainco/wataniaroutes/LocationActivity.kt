@@ -13,7 +13,22 @@ import kotlinx.android.synthetic.main.activity_add_location.*
 import kotlinx.android.synthetic.main.uctd_toolbar.*
 
 
-class LocationActivity : BaseActivity(), ICreateActivity {
+class LocationActivity : BaseActivity(), ICreateActivity ,IEditActivity {
+    var selectedItem=""
+    override fun edit(value: String) {
+        val replacedValue = value.replace("/","-")
+        val investorMap = mapOf("location" to replacedValue)
+        locationRef
+            .document(replacedValue).set(investorMap)
+            .addOnSuccessListener {
+            }.addOnFailureListener {
+                Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()
+            }
+        val locationDocumentRef = locationRef.document(selectedItem)
+        locationDocumentRef.delete().addOnCompleteListener {
+            Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
+        }
+    }
     private val db = FirebaseFirestore.getInstance()
     private val locationRef: CollectionReference = db.collection("Locations")
     val locationsNames = mutableListOf<String>()
@@ -120,8 +135,16 @@ class LocationActivity : BaseActivity(), ICreateActivity {
         },
             object : ValuesAdapter.OnItemClicked {
                 override fun setOnItemClicked(value: String) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
+                    selectedItem = value
+                    locationRef.document(value)
+                        .get().addOnSuccessListener {
+                            val dialog =
+                                NewDialog(R.string.location,R.string.edit_location ,value)
+                            dialog.show(
+                                supportFragmentManager,
+                                getString(R.string.edit_location)
+                            )
+                        }}
 
             })
     }

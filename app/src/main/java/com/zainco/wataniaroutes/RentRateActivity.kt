@@ -13,7 +13,22 @@ import kotlinx.android.synthetic.main.activity_add_rentrate.*
 import kotlinx.android.synthetic.main.uctd_toolbar.*
 
 
-class RentRateActivity : BaseActivity(), ICreateActivity {
+class RentRateActivity : BaseActivity(), ICreateActivity ,IEditActivity {
+    var selectedItem=""
+    override fun edit(value: String) {
+        val replacedValue = value.replace("/","-")
+        val investorMap = mapOf("rentrate" to replacedValue)
+        rentRateRef
+            .document(replacedValue).set(investorMap)
+            .addOnSuccessListener {
+            }.addOnFailureListener {
+                Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()
+            }
+        val rentRateDocumentRef = rentRateRef.document(selectedItem)
+        rentRateDocumentRef.delete().addOnCompleteListener {
+            Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
+        }
+    }
     private val db = FirebaseFirestore.getInstance()
     private val rentRateRef: CollectionReference = db.collection("RentRates")
     val rentRatesNames = mutableListOf<String>()
@@ -121,7 +136,13 @@ class RentRateActivity : BaseActivity(), ICreateActivity {
         },
             object : ValuesAdapter.OnItemClicked {
                 override fun setOnItemClicked(value: String) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    selectedItem = value
+                    val dialog =
+                        NewDialog(R.string.rentrate,R.string.edit_rent_rate,value)
+                    dialog.show(
+                        supportFragmentManager,
+                        getString(R.string.edit_rent_rate)
+                    )
                 }
 
             })

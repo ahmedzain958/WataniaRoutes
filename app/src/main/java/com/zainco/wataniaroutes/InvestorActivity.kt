@@ -13,7 +13,24 @@ import kotlinx.android.synthetic.main.activity_add_investor.*
 import kotlinx.android.synthetic.main.uctd_toolbar.*
 
 
-class InvestorActivity : BaseActivity(), ICreateActivity {
+class InvestorActivity : BaseActivity(), ICreateActivity, IEditActivity {
+    var selectedItem=""
+    override fun edit(value: String) {
+        val replacedValue = value.replace("/", "-")
+        val investorMap = mapOf("investor" to replacedValue)
+        investorRef
+            .document(replacedValue).set(investorMap)
+            .addOnSuccessListener {
+                Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()
+            }
+        val investorDocumentRef = investorRef.document(selectedItem)
+        investorDocumentRef.delete().addOnCompleteListener {
+            Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private val db = FirebaseFirestore.getInstance()
     private val investorRef: CollectionReference = db.collection("Investor")
     val investorsNames = mutableListOf<String>()
@@ -121,7 +138,16 @@ class InvestorActivity : BaseActivity(), ICreateActivity {
         },
             object : ValuesAdapter.OnItemClicked {
                 override fun setOnItemClicked(value: String) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    selectedItem = value
+                    investorRef.document(value)
+                        .get().addOnSuccessListener {
+                            val dialog =
+                                NewDialog(R.string.investor, R.string.edit_investor, value)
+                            dialog.show(
+                                supportFragmentManager,
+                                getString(R.string.edit_investor)
+                            )
+                        }
                 }
 
             })

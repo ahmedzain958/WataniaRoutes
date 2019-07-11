@@ -13,7 +13,22 @@ import kotlinx.android.synthetic.main.activity_add_currency.*
 import kotlinx.android.synthetic.main.uctd_toolbar.*
 
 
-class CurrencyActivity : BaseActivity(), ICreateCurrencyActivity {
+class CurrencyActivity : BaseActivity(), ICreateCurrencyActivity,EditCurrencyActivity {
+    override fun editCurrency(value: String, newEgyptianValue: String) {
+        val replacedValue = value.replace("/", "-")
+        val currencyMap = mapOf(
+            "currency" to replacedValue,
+            "egyptianValue" to newEgyptianValue
+        )
+        currencyRef
+            .document(replacedValue).set(currencyMap)
+            .addOnSuccessListener {
+                Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()
+            }
+    }
+
     private val db = FirebaseFirestore.getInstance()
     private val currencyRef: CollectionReference = db.collection("currency")
     val currencyNames = mutableListOf<String>()
@@ -129,7 +144,23 @@ class CurrencyActivity : BaseActivity(), ICreateCurrencyActivity {
             },
                 object : ValuesAdapter.OnItemClicked {
                     override fun setOnItemClicked(value: String) {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                        currencyRef.document(value)
+                            .get().addOnSuccessListener {
+                                val dialog =
+                                    NewCurrencyDialog(
+                                        R.string.currency,
+                                        R.string.egyptian_value,
+                                        R.string.edit_currency,
+                                        it.getString("currency")!!,
+                                        it.getString("egyptianValue")!!
+                                    )
+                                dialog.show(
+                                    supportFragmentManager,
+                                    getString(R.string.edit_currency)
+                                )
+                            }
+
+
                     }
 
                 })

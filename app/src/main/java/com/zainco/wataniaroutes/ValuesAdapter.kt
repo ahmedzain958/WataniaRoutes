@@ -44,7 +44,7 @@ class ValuesAdapter(
                 onRecycleClicked.setOnRecycleClicked(value)
             }
             this.itemView.setOnClickListener {
-                onRecycleClicked.setOnRecycleClicked(value)
+                onItemClicked.setOnItemClicked(value)
             }
         }
     }
