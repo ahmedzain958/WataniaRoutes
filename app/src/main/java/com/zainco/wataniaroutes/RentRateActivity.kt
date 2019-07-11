@@ -50,7 +50,7 @@ class RentRateActivity : BaseActivity(), ICreateActivity ,IEditActivity {
         setContentView(R.layout.activity_add_rentrate)
         initToolbar(uctdToolbar, getString(R.string.add_rentrate), withBack = true)
         fab.setOnClickListener {
-            NewDialog(R.string.rentrate,R.string.add_rentrate).show(getSupportFragmentManager(), getString(R.string.add_rentrate))
+            NewDialog(R.string.rentrate,R.string.add_rentrate,"").show(supportFragmentManager, getString(R.string.add_rentrate))
         }
         editTextSearchRentRate.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {

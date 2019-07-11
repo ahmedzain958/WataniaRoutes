@@ -205,6 +205,18 @@
                         android:layout_weight="0.4"
                         android:layout_height="match_parent"/>
 
+
+                <EditText
+                        android:id="@+id/editPrice"
+                        android:hint="@string/price"
+                        android:gravity="center"
+                        android:layout_marginStart="4dp"
+                        android:inputType="numberDecimal"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/rounded_edittext"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.3"
+                        android:layout_height="match_parent"/>
                 <TextView
                         android:text="@string/price"
                         android:gravity="center"
@@ -212,18 +224,6 @@
                         android:background="@drawable/rounded_edittext"
                         android:textColor="@color/black" android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_height="match_parent"/>
-
-                <EditText
-                        android:id="@+id/editPrice"
-                        android:hint="@string/price"
-                        android:gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:inputType="numberDecimal"
-                        android:layout_marginEnd="4dp"
-                        android:background="@drawable/rounded_edittext"
-                        android:layout_width="0dp"
-                        android:layout_weight="1.3"
                         android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout

@@ -21,7 +21,6 @@ class InvestorActivity : BaseActivity(), ICreateActivity, IEditActivity {
         investorRef
             .document(replacedValue).set(investorMap)
             .addOnSuccessListener {
-                Toast.makeText(this, "تم التعديل بنجاح", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener {
                 Toast.makeText(this, "حدث خطأ", Toast.LENGTH_SHORT).show()
             }

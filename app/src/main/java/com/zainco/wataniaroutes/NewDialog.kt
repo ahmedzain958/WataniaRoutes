@@ -11,8 +11,9 @@ import androidx.fragment.app.DialogFragment
 
 
 class NewDialog(
-    val hint: Int, val dialogtitle: Int,
-    val value: String = ""
+    val hint: Int,
+    val dialogtitle: Int,
+    val oldValue: String = ""
 ) : DialogFragment() {
     private lateinit var textViewValue: EditText
     private lateinit var mCreate: TextView
@@ -30,7 +31,7 @@ class NewDialog(
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.dialog_new_value, container, false)
         textViewValue = view.findViewById(R.id.textViewValue)
-        textViewValue.setText(value)
+        textViewValue.setText(oldValue)
         textViewValue.hint = getString(hint)
         mCreate = view.findViewById(R.id.create)
         mCancel = view.findViewById(R.id.cancel)
@@ -40,20 +41,16 @@ class NewDialog(
         }
         mCreate.setOnClickListener {
             val value = textViewValue.text.toString()
-            if (value != "") {
-                if (value != "") {//edit mode
+                if (oldValue != "") {//edit mode
                     iEditActivity.edit(value)
                 } else {
                     iCreateActivity.createNew(value)
                 }
                 dialog?.dismiss()
-            } else {
-                textViewValue.setError("")
-            }
         }
 
         dialog!!.setTitle(getString(dialogtitle))
-        if (value != "") {//edit mode
+        if (oldValue != "") {//edit mode
             mCreate.text = "تعديل"
         }
         return view

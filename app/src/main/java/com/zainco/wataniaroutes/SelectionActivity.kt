@@ -1,7 +1,6 @@
 package com.zainco.wataniaroutes
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -38,28 +37,12 @@ class SelectionActivity : BaseActivity() {
     private fun getSelection() {
         if (intent?.getIntExtra(SELECTION, -1) == ROUTE_SELECTION_CODE) {
             initToolbar(uctdToolbar, getString(R.string.choose_routes), withBack = true)
-            fab.setOnClickListener {
-                val intent = Intent(this, RouteActivity::class.java)
-                startActivity(intent)
-            }
         } else if (intent?.getIntExtra(SELECTION, -1) == INVESTOR_SELECTION_CODE) {
             initToolbar(uctdToolbar, getString(R.string.choose_investors), withBack = true)
-            fab.setOnClickListener {
-                val intent = Intent(this, InvestorActivity::class.java)
-                startActivity(intent)
-            }
         } else if (intent?.getIntExtra(SELECTION, -1) == LOCATION_SELECTION_CODE) {
             initToolbar(uctdToolbar, getString(R.string.choose_location), withBack = true)
-            fab.setOnClickListener {
-                val intent = Intent(this, LocationActivity::class.java)
-                startActivity(intent)
-            }
         } else if (intent?.getIntExtra(SELECTION, -1) == RENT_TYPE_SELECTION_CODE) {
             initToolbar(uctdToolbar, getString(R.string.choose_rent_type), withBack = true)
-            fab.setOnClickListener {
-                val intent = Intent(this, RentRateActivity::class.java)
-                startActivity(intent)
-            }
         }
         filter()
     }
